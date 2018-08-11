@@ -7,6 +7,7 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('students', { path: '/anmeldungen' });
 });
 
 export default Router;
