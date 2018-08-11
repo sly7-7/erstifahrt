@@ -1,0 +1,43 @@
+{{#bs-navbar position="fixed-top" backgroundColor="mainnav" type="light" as |navbar|}}
+  {{navbar.toggle}}
+
+  {{#link-to "application" classNames="navbar-brand"}}
+    Erstifahrt Anmeldung
+  {{/link-to}}
+
+  {{#navbar.content}}
+    {{#navbar.nav as |nav|}}
+
+      {{#nav.item}}
+        {{nav.link-to "Anmeldungen" "application"}}
+      {{/nav.item}}
+
+      {{#nav.item}}
+        {{nav.link-to "Aktuelle Fahrt" "application"}}
+      {{/nav.item}}
+
+      {{#nav.item}}
+        {{#bs-dropdown as |dd|}}
+
+          {{#dd.toggle classNames="nav-link"}}
+            Teilnehmerlisten <span class="caret"></span>
+          {{/dd.toggle}}
+
+          {{#dd.menu as |ddm|}}
+
+            {{#ddm.item}}
+              {{ddm.link-to "Für den AStA" "application"}}
+            {{/ddm.item}}
+
+            {{#ddm.item}}
+              {{ddm.link-to "Für das Haus" "application"}}
+            {{/ddm.item}}
+
+          {{/dd.menu}}
+
+        {{/bs-dropdown}}
+      {{/nav.item}}
+
+    {{/navbar.nav}}
+  {{/navbar.content}}
+{{/bs-navbar}}
