@@ -2,10 +2,80 @@
   background-color: $hhu-blue-30
 
 .navbar
-  $logo-size: 3rem
-  background-image: url('../inphima.png'), url('img/main-nav/bus.png'), url('img/main-nav/sign.png'), url('img/main-nav/house.png')
-  background-position: .5rem center, right 8.5rem bottom .2rem, right 4.5rem bottom, right .5rem bottom .2rem
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat
-  background-size: $logo-size, $logo-size auto, $logo-size auto, $logo-size auto
+  $image-size: 3rem
+  background: $hhu-blue-30 url('../inphima.png') no-repeat .5rem center
+  background-size: $image-size $image-size
   overflow: visible
-  padding-left: $logo-size + 1rem
+  padding-left: $image-size + 1rem
+
+  .anim
+    background-position: center center
+    background-repeat: no-repeat
+    position: absolute
+    transform: translateZ(0)
+    z-index: 5
+
+  .bus
+    $width: $image-size * 1.5
+    $height: $width * (42 / 99)
+    animation: bobbing .25s infinite ease-in-out forwards alternate
+    background-image: url('img/main-nav/bus.png')
+    background-size: $width $height
+    height: $height
+    right: 6.5rem + $width
+    top: 3.2rem - $height
+    transform-origin: right-center
+    width: $width
+
+  .sign
+    background-image:  url('img/main-nav/sign.png')
+    background-size: $image-size $image-size
+    height: $image-size
+    right: 5.5rem
+    width: $image-size
+
+  .house
+    background-image:  url('img/main-nav/house.png')
+    background-size:  $image-size $image-size
+    height: $image-size
+    right: .5rem
+    width: $image-size
+
+  .cloud
+    $width: $image-size * .5
+    $height: $width
+    $right: 7.5rem
+    animation: riding 3s infinite linear
+    background-image:  url('img/main-nav/cloud.png')
+    background-size:  $width $height
+    height: $height
+    opacity: 0
+    right: $right
+    top: -.1rem
+    width: $width
+
+    @keyframes riding
+      0%
+        opacity: 0
+        right: $right
+
+      66%
+        opacity: 0
+        right: $right
+
+      70%
+        opacity: 1
+
+      94%
+        opacity: 1
+
+      100%
+        opacity: 0
+        right: 15.5rem
+
+  @keyframes bobbing
+    0%
+      transform: rotate(0) translateY(0)
+
+    100%
+      transform: rotate(.1deg) translateY(-2px)
