@@ -19,11 +19,11 @@ export default Factory.extend({
   },
   comment: faker.company.catchPhrase,
   hasPayed: faker.random.boolean,
-  councillor: faker.random.name,
+  councillor: () => faker.name.findName(),
   registrationDate() {
     return faker.date.recent(40);
   },
   registrationNumber(i) {
-    return i + 1;
+    return i;
   },
 });
