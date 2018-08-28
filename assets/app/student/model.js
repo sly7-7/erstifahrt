@@ -1,20 +1,28 @@
 import Model from 'ember-data/model';
-import attr from 'ember-data/attr';
+import { attr } from '@ember-decorators/data';
+import { computed } from '@ember-decorators/object';
 
-import { computed } from '@ember/object';
+export default class Student extends Model {
+  @attr comment;
 
-export default Model.extend({
-  firstName: attr(),
-  lastName: attr(),
-  dateOfBirth: attr('date'),
-  subject: attr(),
-  comment: attr(),
-  hasPayed: attr('boolean'),
-  councillor: attr(),
-  registrationDate: attr('date'),
-  registrationNumber: attr('number'),
+  @attr councillor;
 
-  fullName: computed('firstName', 'lastName',  function() {
+  @attr firstName;
+
+  @attr lastName;
+
+  @attr subject;
+
+  @attr('boolean') hasPayed;
+
+  @attr('date') dateOfBirth;
+
+  @attr('date') registrationDate;
+
+  @attr('number') registrationNumber;
+
+  @computed('firstName', 'lastName')
+  get fullName() {
     return `${this.get('firstName')} ${this.get('lastName')}`;
-  })
-});
+  }
+}
