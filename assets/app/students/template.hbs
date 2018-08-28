@@ -1,3 +1,15 @@
-{{students-table students=model}}
+{{#if message}}
+  {{#bs-alert type=messageType}}
+    <strong>
+      {{message}}
+    </strong>
+
+    {{#if messageDetail}}
+      <p>{{messageDetail}}</p>
+    {{/if}}
+  {{/bs-alert}}
+{{/if}}
+
+{{students-table students=model book=(action "book") edit=(action "edit") unbook=(action "unbook")}}
 
 {{outlet}}

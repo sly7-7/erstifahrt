@@ -34,9 +34,17 @@
           <th scope="row" class="text-right">
             {{student.registrationNumber}}:
 
-            {{fa-icon 'user-check' classNames='text-success'}}
-            {{!--{{fa-icon 'user-lock' classNames='text-danger'}}
-            {{fa-icon 'user-clock' classNames='text-warning'}}--}}
+            {{#if student.isBooked}}
+              {{fa-icon 'user-check' classNames='text-success'}}
+            {{else}}
+              {{fa-icon 'user-clock' classNames='text-warning'}}
+            {{/if}}
+
+            {{!-- TODO:
+              {{#if student.isCancelled}}
+                {{fa-icon 'user-lock' classNames='text-danger'}}
+              {{/if}}
+            --}}
           </th>
 
           <td class="text-center">
@@ -62,19 +70,25 @@
           <td>{{student.comment}}</td>
 
           <td class="text-right">
-            {{#bs-button type='success' size='sm' title='Anmelden'}}
-              {{fa-icon 'user-check'}}
-              {{bs-tooltip title='Anmelden'}}
-            {{/bs-button}}
+            {{#unless student.isBooked}}
 
-            {{#bs-button type='light' size='sm' title='Bearbeiten'}}
+              {{#bs-button type='success' size='sm' title='Anmelden' onClick=(action @book student)}}
+                {{fa-icon 'user-check'}}
+                {{bs-tooltip title='Anmelden'}}
+              {{/bs-button}}
+
+            {{else}}
+
+              {{#bs-button type='danger' size='sm' title='Abmelden' onClick=(action @unbook student)}}
+                {{fa-icon 'user-minus'}}
+                {{bs-tooltip title='Abmelden'}}
+              {{/bs-button}}
+
+            {{/unless}}
+
+            {{#bs-button type='light' size='sm' title='Bearbeiten' onClick=(action @edit student)}}
               {{fa-icon 'user-cog'}}
               {{bs-tooltip title='Bearbeiten'}}
-            {{/bs-button}}
-
-            {{#bs-button type='danger' size='sm' title='Entfernen'}}
-              {{fa-icon 'user-minus'}}
-              {{bs-tooltip title='Entfernen'}}
             {{/bs-button}}
           </td>
 

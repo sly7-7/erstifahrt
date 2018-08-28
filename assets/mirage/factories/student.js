@@ -19,6 +19,7 @@ export default Factory.extend({
   },
   comment: faker.company.catchPhrase,
   hasPayed: faker.random.boolean,
+  isBooked: faker.random.boolean,
   councillor: () => faker.name.findName(),
   registrationDate() {
     return faker.date.recent(40);
