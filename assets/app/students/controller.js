@@ -9,20 +9,14 @@ export default class StudentsController extends Controller {
     try {
       await student.book();
     } catch(e) {
-      this.setProperties({
-        message:
-          `${student.fullName} konnte wegen eines Fehlers im Backend nicht angemeldet werden.`,
-        messageDetail: e.message,
-        messageType: 'danger'
-      });
-      student.rollbackAttributes();
+      this.error(
+        `${student.fullName} konnte wegen eines Fehlers im Backend nicht angemeldet werden.`,
+        e.message
+      );
       return false;
     }
 
-    this.setProperties({
-      message: `${student.fullName} wurde erfolgreich angemeldet.`,
-      messageType: 'success'
-    });
+    this.success(`${student.fullName} wurde erfolgreich angemeldet.`);
   }
 
   @action
@@ -37,20 +31,28 @@ export default class StudentsController extends Controller {
     try {
       await student.unbook();
     } catch(e) {
-      this.setProperties({
-        message:
-          `${student.fullName} konnte wegen eines Fehlers im Backend nicht abgemeldet werden.`,
-        messageDetail: e.message,
-        messageType: 'danger'
-      });
+      this.error(
+        `${student.fullName} konnte wegen eines Fehlers im Backend nicht abgemeldet werden.`,
+        e.message
+      );
       student.rollbackAttributes();
       return false;
     }
 
-    this.setProperties({
-      message: `${student.fullName} wurde erfolgreich abgemeldet.`,
-      messageType: 'success'
-    });
+    this.success(`${student.fullName} wurde erfolgreich abgemeldet.`);
+  }
+
+  success(message, messageDetail) {
+    this.showMessage('success', message, messageDetail);
+  }
+
+  error(message, messageDetail) {
+    this.showMessage('danger', message, messageDetail);
+  }
+
+  showMessage(messageType, message, messageDetail) {
+    this.setProperties({ messageType, message, messageDetail });
+    setTimeout(() => this.resetMessage(), 5000);
   }
 
   resetMessage() {
