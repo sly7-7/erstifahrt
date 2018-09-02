@@ -1,4 +1,6 @@
+import { defineProperty } from '@ember/object';
 import { cancel, later } from '@ember/runloop';
+import { inject as service } from '@ember/service';
 
 function makeNotifyFunction(type) {
   return function notify(message, messageDetail) {
@@ -11,16 +13,17 @@ export default function notable(target) {
 
   function showMessage(messageType, message, messageDetail) {
     cancel(timeout);
-    this.setProperties({ messageType, message, messageDetail });
-    timeout = later(this, 'resetMessage', 5000);
+    this.notify.showMessage(messageType, message, messageDetail);
+    timeout = later(this, 'resetMessage', this.messageTimeout);
   }
 
   function resetMessage() {
-    if (!this.isDestroyed) {
-      this.setProperties({ message: null, messageDetail: null, messageType: null });
-    }
+    this.notify.resetMessage();
   }
 
+  defineProperty(target.prototype, 'notify', service('notify'));
+
+  target.prototype.messageTimeout = 5000;
   target.prototype.showMessage = showMessage;
   target.prototype.resetMessage = resetMessage;
   target.prototype.success = makeNotifyFunction('success');

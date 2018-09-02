@@ -1,0 +1,11 @@
+{{#if message}}
+  {{#bs-alert type=messageType}}
+    <strong>
+      {{message}}
+    </strong>
+
+    {{#if messageDetail}}
+      <p>{{messageDetail}}</p>
+    {{/if}}
+  {{/bs-alert}}
+{{/if}}
