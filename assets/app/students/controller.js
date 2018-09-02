@@ -1,6 +1,9 @@
 import Controller from '@ember/controller';
 import { action } from '@ember-decorators/object';
 
+import Notable from 'erstifahrt/mixins/notable';
+
+@Notable
 export default class StudentsController extends Controller {
   @action
   async book(student) {
@@ -40,22 +43,5 @@ export default class StudentsController extends Controller {
     }
 
     this.success(`${student.fullName} wurde erfolgreich abgemeldet.`);
-  }
-
-  success(message, messageDetail) {
-    this.showMessage('success', message, messageDetail);
-  }
-
-  error(message, messageDetail) {
-    this.showMessage('danger', message, messageDetail);
-  }
-
-  showMessage(messageType, message, messageDetail) {
-    this.setProperties({ messageType, message, messageDetail });
-    setTimeout(() => this.resetMessage(), 5000);
-  }
-
-  resetMessage() {
-    this.setProperties({ message: null, messageDetail: null, messageType: null });
   }
 }
