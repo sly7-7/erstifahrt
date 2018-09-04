@@ -1,29 +1,7 @@
 @import main-nav
+@import components/global-message
+@import components/students-table
+
 
 body
   padding-top: 4.5rem
-
-.alert
-  animation: scrolldown .5s ease-in-out forwards
-  left: 50%
-  position: absolute
-  top: 0
-  transform: translateX(-50%)
-  width: 60%
-
-  @keyframes scrolldown
-    100%
-      top: 4.5rem
-
-
-.table
-
-  td,
-  th
-    vertical-align: middle
-    white-space: nowrap
-
-    width: 1%
-
-    &:nth-child(9)
-      width: auto
