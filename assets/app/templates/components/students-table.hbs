@@ -48,11 +48,9 @@
           </th>
 
           <td class="text-center">
-            {{#if student.hasPayed}}
-              {{fa-icon 'check-circle' classNames='text-success'}}
-            {{else}}
-              {{fa-icon 'times-circle' classNames='text-danger'}}
-            {{/if}}
+            {{input-switch
+              checked=student.hasPayed
+              onchange=(action (mut student.hasPayed) value="target.checked")}}
           </td>
 
           <td>{{student.fullName}}</td>

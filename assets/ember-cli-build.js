@@ -15,6 +15,20 @@ module.exports = function(defaults) {
     }
   });
 
+  app.import('node_modules/@fortawesome/fontawesome-free/css/solid.css');
+  app.import('node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot', {
+    destDir: 'webfonts'
+  });
+  app.import('node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf', {
+    destDir: 'webfonts'
+  });
+  app.import('node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff', {
+    destDir: 'webfonts'
+  });
+  app.import('node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2', {
+    destDir: 'webfonts'
+  });
+
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //
