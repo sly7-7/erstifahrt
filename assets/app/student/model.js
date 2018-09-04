@@ -28,6 +28,18 @@ export default class Student extends Model {
     return `${this.get('firstName')} ${this.get('lastName')}`;
   }
 
+  set fullName(value) {
+    if (typeof value !== 'string') {
+      throw new TypeError('Invalid Name');
+    }
+
+    const name = value.split(/\s+/);
+    const lastName = name.splice(-1).join('');
+    const firstName = name.join(' ');
+
+    this.setProperties({ firstName, lastName });
+  }
+
   async book() {
     this.set('isBooked', true);
     return await this.save()

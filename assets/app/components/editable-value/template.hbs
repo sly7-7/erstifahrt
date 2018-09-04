@@ -1,0 +1,41 @@
+<div class="editable-value {{if isEditing 'is-editing'}} {{if isPending 'is-pending'}}">
+  {{#unless isEditing}}
+
+    <span ondblclick={{action 'edit'}} onkeyup={{action 'onKeyup'}} tabindex="0">
+      {{@value}}
+    </span>
+
+    <a class="toggle-mode" onclick={{action "edit"}}>
+      {{fa-icon 'pencil-alt'}}
+      {{bs-tooltip title='Bearbeiten'}}
+    </a>
+
+  {{else}}
+
+    {{#if hasBlock}}
+      {{yield}}
+    {{else}}
+
+      <input type="text" class="form-control form-control-sm" autofocus
+        value={{value}} disabled={{isPending}}
+        onkeyup={{action 'onKeyupEdit'}}
+        onchange={{action (mut newValue) value='target.value'}} />
+
+    {{/if}}
+
+    {{#if isPending}}
+      {{fa-icon 'compass' prefix='far' spin=true classNames='toggle-mode'}}
+    {{else}}
+      <a class="toggle-mode save" onclick={{action "save"}}>
+        {{fa-icon 'save' prefix='far'}}
+        {{bs-tooltip title='Speichern'}}
+      </a>
+
+      <a class="toggle-mode" onclick={{action "cancel"}}>
+        {{fa-icon 'times'}}
+        {{bs-tooltip title='Abbrechen'}}
+      </a>
+    {{/if}}
+
+  {{/unless}}
+</div>

@@ -1,0 +1,39 @@
+.editable-value
+  display: flex
+  justify-content: space-between
+  padding-right: 1rem
+
+  &.is-editing
+    padding-right: 0
+
+    .toggle-mode
+      margin-right: 0
+
+  &:hover,
+  &.is-editing
+    .toggle-mode
+      opacity: .5
+
+      &:hover,
+      &.save
+        opacity: 1
+
+  &.is-pending
+    .toggle-mode
+      cursor: default
+      opacity: .3
+
+  .toggle-mode
+    align-self: center
+    cursor: pointer
+    font-size: .8rem
+    justify-self: center
+    margin-left: .5rem // minimum space between toggle and value
+    margin-right: -1rem
+    opacity: 0
+    transition: opacity .3s ease
+
+  input
+    display: flex
+    font-size: .8rem
+    justify-self: stretch

@@ -53,7 +53,9 @@
               onchange=(action @update student 'hasPayed')}}
           </td>
 
-          <td>{{student.fullName}}</td>
+          <td>
+            {{editable-value value=student.fullName onSave=(action @update student "fullName")}}
+          </td>
 
           <td class="text-right">{{moment-format student.dateOfBirth 'L'}}</td>
 
@@ -61,11 +63,13 @@
 
           <td>{{student.subject}}</td>
 
-          <td>{{student.councillor}}</td>
+          <td>
+            {{editable-value value=student.councillor onSave=(action @update student "councillor")}}
+          </td>
 
           <td class="text-right">{{moment-format student.registrationDate 'DD. MMMM'}}</td>
 
-          <td>{{student.comment}}</td>
+          <td>{{editable-value value=student.comment onSave=(action @update student "comment")}}</td>
 
           <td class="text-right">
             {{#unless student.isBooked}}
