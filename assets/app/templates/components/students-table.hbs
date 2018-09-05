@@ -61,7 +61,11 @@
 
           <td class="text-right">{{student.age}}</td>
 
-          <td>{{student.subject}}</td>
+          <td>
+            {{#editable-value value=student.subject onSave=(action @update student 'subject') as |editable|}}
+              {{editable.select options=@subjects}}
+            {{/editable-value}}
+          </td>
 
           <td>
             {{editable-value value=student.councillor onSave=(action @update student 'councillor')}}

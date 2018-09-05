@@ -15,7 +15,8 @@
     {{#if hasBlock}}
 
       {{yield (hash
-        text=(component 'editable-value/text' value=@value onChange=(action (mut newValue)) onEscape=(action 'cancel') onReturn=(action 'save')))}}
+        text=(component 'editable-value/text' value=@value onChange=(action (mut newValue)) onEscape=(action 'cancel') onReturn=(action 'save'))
+        select=(component 'editable-value/select' value=@value onChange=(action (mut newValue)) onEscape=(action 'cancel') onReturn=(action 'save')))}}
 
     {{else}}
 

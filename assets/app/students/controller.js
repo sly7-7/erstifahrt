@@ -62,4 +62,11 @@ export default class StudentsController extends Controller {
 
     this.success(`${student.fullName} wurde erfolgreich bearbeitet.`);
   }
+
+  subjects = [
+    'Informatik',
+    'Mathematik',
+    'Med. Physik',
+    'Physik'
+  ]
 }

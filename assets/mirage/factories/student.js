@@ -13,7 +13,7 @@ export default Factory.extend({
     return faker.random.arrayElement([
       'Informatik',
       'Physik',
-      'Medizinische Physik',
+      'Med. Physik',
       'Mathematik'
     ]);
   },

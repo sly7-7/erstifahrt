@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { attribute, classNames, tagName } from '@ember-decorators/component';
 import { reads } from '@ember-decorators/object/computed';
 
-@classNames('form-control', 'form-control-sm')
+@classNames('form-control', 'form-control-sm', 'input')
 @tagName('input')
 export default class EditableTextComponent extends Component {
   @attribute autofocus = true

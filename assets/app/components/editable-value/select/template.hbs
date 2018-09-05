@@ -1,0 +1,4 @@
+{{#power-select options=@options selected=selectedValue disabled=@disabled searchEnabled=false
+  triggerClass='input' dropdownClass='editable-value-select-options' onchange=(action (mut selectedValue)) as |option|}}
+  {{option}}
+{{/power-select}}
