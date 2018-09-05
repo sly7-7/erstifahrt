@@ -13,13 +13,14 @@
   {{else}}
 
     {{#if hasBlock}}
-      {{yield}}
+
+      {{yield (hash
+        text=(component 'editable-value/text' value=@value onChange=(action (mut newValue)) onEscape=(action 'cancel') onReturn=(action 'save')))}}
+
     {{else}}
 
-      <input type="text" class="form-control form-control-sm" autofocus
-        value={{value}} disabled={{isPending}}
-        onkeyup={{action 'onKeyupEdit'}}
-        onchange={{action (mut newValue) value='target.value'}} />
+      {{editable-value/text value=@value disabled=isPending
+        onChange=(action (mut newValue)) onEscape=(action 'cancel') onReturn=(action 'save')}}
 
     {{/if}}
 

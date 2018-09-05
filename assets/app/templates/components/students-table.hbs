@@ -64,7 +64,7 @@
           <td>{{student.subject}}</td>
 
           <td>
-            {{editable-value value=student.councillor onSave=(action @update student "councillor")}}
+            {{editable-value value=student.councillor onSave=(action @update student 'councillor')}}
           </td>
 
           <td class="text-right">{{moment-format student.registrationDate 'DD. MMMM'}}</td>

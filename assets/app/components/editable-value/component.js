@@ -29,20 +29,6 @@ export default class EditableValuComponent extends Component {
   }
 
   @action
-  async onKeyupEdit(e) {
-    switch (e.keyCode) {
-      case 13:
-        e.preventDefault();
-        await this.save();
-        break;
-      case 17:
-        e.preventDefault();
-        this.cancel();
-        break;
-    }
-  }
-
-  @action
   async save() {
     this.set('isPending', true);
 
