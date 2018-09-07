@@ -1,9 +1,13 @@
 <div class="editable-value {{if isEditing 'is-editing'}} {{if isPending 'is-pending'}}">
   {{#unless isEditing}}
 
-    <span ondblclick={{action 'edit'}} onkeyup={{action 'onKeyup'}} tabindex="0">
-      {{@value}}
-    </span>
+    {{#if hasBlock}}
+      {{yield}}
+    {{else}}
+      <span ondblclick={{action 'edit'}} onkeyup={{action 'onKeyup'}} tabindex="0">
+        {{@value}}
+      </span>
+    {{/if}}
 
     <a class="toggle-mode" onclick={{action "edit"}}>
       {{fa-icon 'pencil-alt'}}
@@ -15,8 +19,10 @@
     {{#if hasBlock}}
 
       {{yield (hash
-        text=(component 'editable-value/text' value=@value onChange=(action (mut newValue)) onEscape=(action 'cancel') onReturn=(action 'save'))
-        select=(component 'editable-value/select' value=@value onChange=(action (mut newValue)) onEscape=(action 'cancel') onReturn=(action 'save')))}}
+        isEditing=true
+        datepicker=(component 'editable-value/datepicker' value=@value isPending=isPending onChange=(action (mut newValue)) onEscape=(action 'cancel') onReturn=(action 'save'))
+        select=(component 'editable-value/select' value=@value onChange=(action (mut newValue)) onEscape=(action 'cancel') onReturn=(action 'save'))
+        text=(component 'editable-value/text' value=@value onChange=(action (mut newValue)) onEscape=(action 'cancel') onReturn=(action 'save')))}}
 
     {{else}}
 

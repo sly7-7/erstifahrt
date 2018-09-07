@@ -57,13 +57,25 @@
             {{editable-value value=student.fullName onSave=(action @update student "fullName")}}
           </td>
 
-          <td class="text-right">{{moment-format student.dateOfBirth 'L'}}</td>
+          <td class="text-right">
+            {{#editable-value value=student.dateOfBirth onSave=(action @update student 'dateOfBirth') as |editable|}}
+              {{#if editable.isEditing}}
+                {{editable.datepicker}}
+              {{else}}
+                {{moment-format student.dateOfBirth 'L'}}
+              {{/if}}
+            {{/editable-value}}
+          </td>
 
           <td class="text-right">{{student.age}}</td>
 
           <td>
             {{#editable-value value=student.subject onSave=(action @update student 'subject') as |editable|}}
-              {{editable.select options=@subjects}}
+              {{#if editable.isEditing}}
+                {{editable.select options=@subjects}}
+              {{else}}
+                {{student.subject}}
+              {{/if}}
             {{/editable-value}}
           </td>
 
@@ -71,7 +83,15 @@
             {{editable-value value=student.councillor onSave=(action @update student 'councillor')}}
           </td>
 
-          <td class="text-right">{{moment-format student.registrationDate 'DD. MMMM'}}</td>
+          <td class="text-right">
+            {{#editable-value value=student.registrationDate onSave=(action @update student 'registrationDate') as |editable|}}
+              {{#if editable.isEditing}}
+                {{editable.datepicker}}
+              {{else}}
+                {{moment-format student.registrationDate 'DD. MMMM'}}
+              {{/if}}
+            {{/editable-value}}
+          </td>
 
           <td>{{editable-value value=student.comment onSave=(action @update student "comment")}}</td>
 

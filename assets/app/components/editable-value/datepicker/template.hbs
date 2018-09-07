@@ -1,0 +1,30 @@
+<span class="editable-value-date">
+
+  <input type="text" class="form-control form-control-sm" value={{moment-format selected format}} />
+
+  {{#bs-popover visible=visible placement='top' as |datepicker|}}
+
+    <div class="text-center">
+      {{#power-calendar classNames='editable-value-date-datepicker'
+        center=currentDate selected=value
+        onCenterChange=(action (mut currentDate) value='date') onSelect=(action (mut selected) value='date')
+        as |calendar|}}
+        {{calendar.nav}}
+        {{calendar.days}}
+      {{/power-calendar}}
+
+      <button class="btn btn-sm btn-primary" disabled={{isPending}} role="button" onclick={{action 'save'}}>
+        {{#if isPending}}
+          {{fa-icon 'compass' spin=true prefix='far'}}
+        {{else}}
+          {{fa-icon 'save' prefix='far'}}
+        {{/if}}
+        Speichern
+      </button>
+
+      <button class="btn btn-sm btn-secondary" disabled={{isPending}} role="button" onclick={{action 'cancel'}}>
+        {{fa-icon 'times'}} Schließen
+      </button>
+    </div>
+  {{/bs-popover}}
+</span>
