@@ -73,6 +73,8 @@
             {{#editable-value value=student.subject onSave=(action @update student 'subject') as |editable|}}
               {{#if editable.isEditing}}
                 {{editable.select options=@subjects}}
+
+                {{editable.controls}}
               {{else}}
                 {{student.subject}}
               {{/if}}

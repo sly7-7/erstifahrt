@@ -20,6 +20,7 @@
 
       {{yield (hash
         isEditing=true
+        controls=(component 'editable-value/controls' onCancel=(action 'cancel') isPending=isPending onSave=(action 'save'))
         datepicker=(component 'editable-value/datepicker' value=@value isPending=isPending onChange=(action (mut newValue)) onEscape=(action 'cancel') onReturn=(action 'save'))
         select=(component 'editable-value/select' value=@value onChange=(action (mut newValue)) onEscape=(action 'cancel') onReturn=(action 'save'))
         text=(component 'editable-value/text' value=@value onChange=(action (mut newValue)) onEscape=(action 'cancel') onReturn=(action 'save')))}}
@@ -29,20 +30,8 @@
       {{editable-value/text value=@value disabled=isPending
         onChange=(action (mut newValue)) onEscape=(action 'cancel') onReturn=(action 'save')}}
 
-    {{/if}}
+      {{editable-value/controls onCancel=(action 'cancel') isPending=isPending onSave=(action "save")}}
 
-    {{#if isPending}}
-      {{fa-icon 'compass' prefix='far' spin=true classNames='toggle-mode'}}
-    {{else}}
-      <a class="toggle-mode save" onclick={{action "save"}}>
-        {{fa-icon 'save' prefix='far'}}
-        {{bs-tooltip title='Speichern'}}
-      </a>
-
-      <a class="toggle-mode" onclick={{action "cancel"}}>
-        {{fa-icon 'times'}}
-        {{bs-tooltip title='Abbrechen'}}
-      </a>
     {{/if}}
 
   {{/unless}}
