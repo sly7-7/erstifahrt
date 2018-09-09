@@ -1,0 +1,97 @@
+html,
+body,
+.login-form
+  height: 100%
+
+.login-form
+  align-items: center
+  display: flex
+  font-family: Poppins
+  font-weight: 400
+  justify-content: center
+  padding: 1.5rem
+
+  form
+    background: $hhu-blue-30
+    border-radius: 10px
+    overflow: hidden
+    padding: 3rem 5rem 2rem
+    text-align: center
+    width: 500px
+
+    .logo
+      $logo-background: #fff
+      $size: 8rem
+      background: $logo-background url('../inphima.png') no-repeat center center
+      background-size: 100px
+      border-radius: 50%
+      display: block
+      height: $size
+      margin: 0 auto 2rem
+      width: $size
+
+    h1
+      font-size: 3rem
+      text-transform: uppercase
+
+    input
+      background: transparent
+      border: 0
+      font-weight: 300
+      outline: 0
+      padding: 0 .25rem .25rem 1.25rem
+      transition: .5s ease-in-out
+
+      &:focus
+        padding-left: .05rem
+
+        &::placeholder
+          color: transparent
+
+        & + span
+          &::before
+            height: 2px
+            width: 100%
+
+          svg
+            top: -1.25rem
+
+    label
+      $border-color: rgba(255, 255, 255, .24)
+      $border-color-hover: #fff
+      border-bottom: 2px solid $border-color
+      display: block
+      margin-bottom: 3rem
+      position: relative
+      text-align: left
+
+      span
+        bottom: 0
+        height: 100%
+        width: 100%
+
+        &,
+        &::before,
+        svg
+          display: block
+          position: absolute
+          transition: .5s ease-in-out
+
+        &::before
+          background: $border-color-hover
+          bottom: -2px
+          content: ''
+          height: 0
+          width: 0
+
+        svg
+          top: 0
+
+    button
+      border-radius: 2.5rem
+      cursor: pointer
+      padding: 1rem 3rem
+      transition: .3s ease
+
+      &:hover
+        background: $hhu-grey-10

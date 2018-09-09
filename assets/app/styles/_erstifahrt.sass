@@ -3,11 +3,16 @@
 @import components/editable-value
 @import components/global-message
 @import components/input-switch
+@import components/login-form
 @import components/students-table
 
 
-body
-  padding-top: 4.5rem
+body > .container-fluid
+  margin-top: 4.5rem
+
+a
+  &[data-ember-action]
+    cursor: pointer
 
 .editable-value
   width: 100%

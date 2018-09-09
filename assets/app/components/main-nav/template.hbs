@@ -60,7 +60,7 @@
     {{#navbar.nav classNames='ml-auto' as |nav|}}
       {{#nav.item}}
         {{#if session.isAuthenticated}}
-          <a {{action 'invalidateSession'}}>
+          <a class="nav-link" {{action 'invalidateSession'}}>
             {{fa-icon 'sign-out-alt'}} Logout
           </a>
         {{else}}
