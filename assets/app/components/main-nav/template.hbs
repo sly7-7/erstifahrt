@@ -9,28 +9,36 @@
     {{#navbar.nav as |nav|}}
 
       {{#nav.item}}
-        {{nav.link-to "Anmeldungen" "students"}}
+        {{#nav.link-to 'students'}}
+          {{fa-icon 'clipboard-check'}} Anmeldungen
+        {{/nav.link-to}}
       {{/nav.item}}
 
       {{#nav.item}}
-        {{nav.link-to "Aktuelle Fahrt" "application"}}
+        {{#nav.link-to "application"}}
+          {{fa-icon 'bus-alt'}} Aktuelle Fahrt
+        {{/nav.link-to}}
       {{/nav.item}}
 
       {{#nav.item}}
         {{#bs-dropdown as |dd|}}
 
           {{#dd.toggle classNames="nav-link"}}
-            Teilnehmerlisten <span class="caret"></span>
+            {{fa-icon 'clipboard-list'}} Teilnehmerlisten <span class="caret"></span>
           {{/dd.toggle}}
 
           {{#dd.menu as |ddm|}}
 
             {{#ddm.item}}
-              {{ddm.link-to "Für den AStA" "application"}}
+              {{#ddm.link-to 'application'}}
+                {{fa-icon 'accessible-icon' prefix='fab'}} Für den AStA
+              {{/ddm.link-to}}
             {{/ddm.item}}
 
             {{#ddm.item}}
-              {{ddm.link-to "Für das Haus" "application"}}
+              {{#ddm.link-to 'application'}}
+                {{fa-icon 'home'}} Für das Haus
+              {{/ddm.link-to}}
             {{/ddm.item}}
 
           {{/dd.menu}}
@@ -41,8 +49,28 @@
     {{/navbar.nav}}
   {{/navbar.content}}
 
-  <span class="anim cloud"></span>
-  <span class="anim bus"></span>
-  <span class="anim sign"></span>
-  <span class="anim house"></span>
+  <div class="navbar-nav ml-auto animation-container">
+    <span class="anim cloud"></span>
+    <span class="anim bus"></span>
+    <span class="anim sign"></span>
+    <span class="anim house"></span>
+  </div>
+
+  {{#navbar.content classNames='logout'}}
+    {{#navbar.nav classNames='ml-auto' as |nav|}}
+      {{#nav.item}}
+        {{#if session.isAuthenticated}}
+          <a {{action 'invalidateSession'}}>
+            {{fa-icon 'sign-out-alt'}} Logout
+          </a>
+        {{else}}
+          {{#nav.link-to 'login'}}
+            {{fa-icon 'sign-in-alt'}} Login
+          {{/nav.link-to}}
+        {{/if}}
+      {{/nav.item}}
+
+    {{/navbar.nav}}
+  {{/navbar.content}}
+
 {{/bs-navbar}}

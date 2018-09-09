@@ -8,6 +8,11 @@
   overflow: visible
   padding-left: $image-size + 1rem
 
+  .animation-container
+    height: 100%
+    overflow: visible
+    position: relative
+
   .anim
     background-position: center center
     background-repeat: no-repeat
@@ -23,7 +28,7 @@
     background-size: $width $height
     height: $height
     right: 6.5rem + $width
-    top: 3.2rem - $height
+    top: -.5rem
     transform-origin: right-center
     width: $width
 
@@ -31,7 +36,8 @@
     background-image:  url('img/main-nav/sign.png')
     background-size: $image-size $image-size
     height: $image-size
-    right: 5.5rem
+    right: 4.5rem
+    top: -$image-size / 2
     width: $image-size
 
   .house
@@ -39,6 +45,7 @@
     background-size:  $image-size $image-size
     height: $image-size
     right: .5rem
+    top: -$image-size / 2
     width: $image-size
 
   .cloud
@@ -51,7 +58,7 @@
     height: $height
     opacity: 0
     right: $right
-    top: -.1rem
+    top: -$height - .5rem
     width: $width
 
     @keyframes riding
@@ -75,7 +82,11 @@
 
   @keyframes bobbing
     0%
-      transform: rotate(0) translateY(0)
+      transform: rotate(0) translateY(0) translateZ(0)
 
     100%
-      transform: rotate(.1deg) translateY(-2px)
+      transform: rotate(.1deg) translateY(-2px) translateZ(0)
+
+
+  .logout
+    flex-grow: unset
