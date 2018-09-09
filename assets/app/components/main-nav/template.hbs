@@ -1,7 +1,7 @@
 {{#bs-navbar position="fixed-top" backgroundColor="mainnav" type="light" as |navbar|}}
   {{navbar.toggle}}
 
-  {{#link-to "application" classNames="navbar-brand"}}
+  {{#link-to 'students' classNames="navbar-brand"}}
     Erstifahrt Anmeldung
   {{/link-to}}
 
@@ -15,7 +15,7 @@
       {{/nav.item}}
 
       {{#nav.item}}
-        {{#nav.link-to "application"}}
+        {{#nav.link-to 'trip'}}
           {{fa-icon 'bus-alt'}} Aktuelle Fahrt
         {{/nav.link-to}}
       {{/nav.item}}
@@ -30,13 +30,13 @@
           {{#dd.menu as |ddm|}}
 
             {{#ddm.item}}
-              {{#ddm.link-to 'application'}}
+              {{#ddm.link-to 'lists' 'asta'}}
                 {{fa-icon 'accessible-icon' prefix='fab'}} Für den AStA
               {{/ddm.link-to}}
             {{/ddm.item}}
 
             {{#ddm.item}}
-              {{#ddm.link-to 'application'}}
+              {{#ddm.link-to 'lists' 'haus'}}
                 {{fa-icon 'home'}} Für das Haus
               {{/ddm.link-to}}
             {{/ddm.item}}
