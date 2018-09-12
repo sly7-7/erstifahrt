@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import { set } from '@ember/object';
 import { action } from '@ember-decorators/object';
 
 import Notable from 'erstifahrt/mixins/notable';
@@ -23,11 +24,6 @@ export default class StudentsController extends Controller {
   }
 
   @action
-  edit() {
-    // TODO
-  }
-
-  @action
   async unbook(student) {
     this.resetMessage();
 
@@ -38,10 +34,32 @@ export default class StudentsController extends Controller {
         `${student.fullName} konnte wegen eines Fehlers im Backend nicht abgemeldet werden.`,
         e.message
       );
+
       student.rollbackAttributes();
       return false;
     }
 
     this.success(`${student.fullName} wurde erfolgreich abgemeldet.`);
+  }
+
+  @action
+  async update(student, key, value) {
+    this.resetMessage();
+
+    set(student, key, value);
+
+    try {
+      await student.save();
+    } catch(e) {
+      this.error(
+        `${student.fullName} konnte wegen eines Fehlers im Backend nicht bearbeitet werden.`,
+        e.message
+      );
+
+      student.rollbackAttributes();
+      return false;
+    }
+
+    this.success(`${student.fullName} wurde erfolgreich bearbeitet.`);
   }
 }

@@ -50,7 +50,7 @@
           <td class="text-center">
             {{input-switch
               checked=student.hasPayed
-              onchange=(action (mut student.hasPayed) value="target.checked")}}
+              onchange=(action @update student 'hasPayed')}}
           </td>
 
           <td>{{student.fullName}}</td>
@@ -83,11 +83,6 @@
               {{/bs-button}}
 
             {{/unless}}
-
-            {{#bs-button type='light' size='sm' title='Bearbeiten' onClick=(action @edit student)}}
-              {{fa-icon 'user-cog'}}
-              {{bs-tooltip title='Bearbeiten'}}
-            {{/bs-button}}
           </td>
 
         </tr>
