@@ -1,5 +1,5 @@
 <div class="login-form">
-  <form {{action 'authenticate' on='submit'}}>
+  <form {{action "authenticate" on="submit"}}>
 
     <span class="logo"></span>
 
@@ -10,13 +10,13 @@
     {{/if}}
 
     <label>
-      {{input placeholder='E-Mail Adresse' value=identification}}
-      <span>{{fa-icon 'user'}}</span>
+      {{input placeholder="E-Mail Adresse" value=identification}}
+      <span>{{fa-icon "user"}}</span>
     </label>
 
     <label>
-      {{input type='password' placeholder='Passwort' value=password}}
-      <span>{{fa-icon 'lock'}}</span>
+      {{input type="password" placeholder="Passwort" value=password}}
+      <span>{{fa-icon "lock"}}</span>
     </label>
 
     <button type="submit">Login</button>

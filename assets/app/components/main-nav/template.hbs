@@ -1,7 +1,12 @@
-{{#bs-navbar position="fixed-top" backgroundColor="mainnav" type="light" as |navbar|}}
+{{#bs-navbar
+  position="fixed-top"
+  backgroundColor="mainnav"
+  type="light"
+as |navbar|
+}}
   {{navbar.toggle}}
 
-  {{#link-to 'students' classNames="navbar-brand"}}
+  {{#link-to "students" classNames="navbar-brand"}}
     Erstifahrt Anmeldung
   {{/link-to}}
 
@@ -9,14 +14,14 @@
     {{#navbar.nav as |nav|}}
 
       {{#nav.item}}
-        {{#nav.link-to 'students'}}
-          {{fa-icon 'clipboard-check'}} Anmeldungen
+        {{#nav.link-to "students"}}
+          {{fa-icon "clipboard-check"}} Anmeldungen
         {{/nav.link-to}}
       {{/nav.item}}
 
       {{#nav.item}}
-        {{#nav.link-to 'trip'}}
-          {{fa-icon 'bus-alt'}} Aktuelle Fahrt
+        {{#nav.link-to "trip"}}
+          {{fa-icon "bus-alt"}} Aktuelle Fahrt
         {{/nav.link-to}}
       {{/nav.item}}
 
@@ -24,20 +29,20 @@
         {{#bs-dropdown as |dd|}}
 
           {{#dd.toggle classNames="nav-link"}}
-            {{fa-icon 'clipboard-list'}} Teilnehmerlisten <span class="caret"></span>
+            {{fa-icon "clipboard-list"}} Teilnehmerlisten <span class="caret"></span>
           {{/dd.toggle}}
 
           {{#dd.menu as |ddm|}}
 
             {{#ddm.item}}
-              {{#ddm.link-to 'lists' 'asta'}}
-                {{fa-icon 'accessible-icon' prefix='fab'}} Für den AStA
+              {{#ddm.link-to "lists" "asta"}}
+                {{fa-icon "accessible-icon" prefix="fab"}} Für den AStA
               {{/ddm.link-to}}
             {{/ddm.item}}
 
             {{#ddm.item}}
-              {{#ddm.link-to 'lists' 'haus'}}
-                {{fa-icon 'home'}} Für das Haus
+              {{#ddm.link-to "lists" "haus"}}
+                {{fa-icon "home"}} Für das Haus
               {{/ddm.link-to}}
             {{/ddm.item}}
 
@@ -56,16 +61,16 @@
     <span class="anim house"></span>
   </div>
 
-  {{#navbar.content classNames='logout'}}
-    {{#navbar.nav classNames='ml-auto' as |nav|}}
+  {{#navbar.content classNames="logout"}}
+    {{#navbar.nav classNames="ml-auto" as |nav|}}
       {{#nav.item}}
         {{#if session.isAuthenticated}}
-          <a class="nav-link" {{action 'invalidateSession'}}>
-            {{fa-icon 'sign-out-alt'}} Logout
+          <a role="button" class="nav-link" {{action "invalidateSession"}}>
+            {{fa-icon "sign-out-alt"}} Logout
           </a>
         {{else}}
-          {{#nav.link-to 'login'}}
-            {{fa-icon 'sign-in-alt'}} Login
+          {{#nav.link-to "login"}}
+            {{fa-icon "sign-in-alt"}} Login
           {{/nav.link-to}}
         {{/if}}
       {{/nav.item}}

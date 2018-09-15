@@ -1,13 +1,13 @@
 {{#if @isPending}}
-  {{fa-icon 'compass' prefix='far' spin=true classNames='toggle-mode'}}
+  {{fa-icon "compass" prefix="far" spin=true classNames="toggle-mode"}}
 {{else}}
-  <a class="toggle-mode save" onclick={{action @onSave}}>
-    {{fa-icon 'save' prefix='far'}}
-    {{bs-tooltip title='Speichern'}}
+  <a role="button" class="toggle-mode save" onclick={{action @onSave}}>
+    {{fa-icon "save" prefix="far"}}
+    {{bs-tooltip title="Speichern"}}
   </a>
 
-  <a class="toggle-mode" onclick={{action @onCancel}}>
-    {{fa-icon 'times'}}
-    {{bs-tooltip title='Abbrechen'}}
+  <a role="button" class="toggle-mode" onclick={{action @onCancel}}>
+    {{fa-icon "times"}}
+    {{bs-tooltip title="Abbrechen"}}
   </a>
 {{/if}}

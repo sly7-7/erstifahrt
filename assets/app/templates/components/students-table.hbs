@@ -4,12 +4,12 @@
     <thead class="thead-light text-center">
       <tr>
         <th scope="col">
-          {{fa-icon 'hashtag'}}
-          {{bs-tooltip title='Anmeldenummer/Status'}}
+          {{fa-icon "hashtag"}}
+          {{bs-tooltip title="Anmeldenummer/Status"}}
         </th>
         <th scope="col" title="Student hat bezahlt">
-          {{fa-icon 'money-bill-wave'}}
-          {{bs-tooltip title='Student hat bezahlt'}}
+          {{fa-icon "money-bill-wave"}}
+          {{bs-tooltip title="Student hat bezahlt"}}
         </th>
         <th scope="col">Name</th>
         <th scope="col">Geburtstag</th>
@@ -19,8 +19,8 @@
         <th scope="col">Anmeldedatum</th>
         <th scope="col">Hinweise</th>
         <th scope="col">
-          {{fa-icon 'cogs'}}
-          {{bs-tooltip title='Einstellungen'}}
+          {{fa-icon "cogs"}}
+          {{bs-tooltip title="Einstellungen"}}
         </th>
       </tr>
     </thead>
@@ -35,14 +35,14 @@
             {{student.registrationNumber}}:
 
             {{#if student.isBooked}}
-              {{fa-icon 'user-check' classNames='text-success'}}
+              {{fa-icon "user-check" classNames="text-success"}}
             {{else}}
-              {{fa-icon 'user-clock' classNames='text-warning'}}
+              {{fa-icon "user-clock" classNames="text-warning"}}
             {{/if}}
 
             {{!-- TODO:
               {{#if student.isCancelled}}
-                {{fa-icon 'user-lock' classNames='text-danger'}}
+                {{fa-icon "user-lock" classNames="text-danger"}}
               {{/if}}
             --}}
           </th>
@@ -50,19 +50,27 @@
           <td class="text-center">
             {{input-switch
               checked=student.hasPayed
-              onchange=(action @update student 'hasPayed')}}
+              onchange=(action @update student "hasPayed")
+            }}
           </td>
 
           <td>
-            {{editable-value value=student.fullName onSave=(action @update student "fullName")}}
+            {{editable-value
+              value=student.fullName
+              onSave=(action @update student "fullName")
+            }}
           </td>
 
           <td class="text-right">
-            {{#editable-value value=student.dateOfBirth onSave=(action @update student 'dateOfBirth') as |editable|}}
+            {{#editable-value
+              value=student.dateOfBirth
+              onSave=(action @update student "dateOfBirth")
+            as |editable|
+            }}
               {{#if editable.isEditing}}
                 {{editable.datepicker}}
               {{else}}
-                {{moment-format student.dateOfBirth 'L'}}
+                {{moment-format student.dateOfBirth "L"}}
               {{/if}}
             {{/editable-value}}
           </td>
@@ -70,7 +78,11 @@
           <td class="text-right">{{student.age}}</td>
 
           <td>
-            {{#editable-value value=student.subject onSave=(action @update student 'subject') as |editable|}}
+            {{#editable-value
+              value=student.subject
+              onSave=(action @update student "subject")
+            as |editable|
+            }}
               {{#if editable.isEditing}}
                 {{editable.select options=@subjects}}
 
@@ -82,37 +94,59 @@
           </td>
 
           <td>
-            {{editable-value value=student.councillor onSave=(action @update student 'councillor')}}
+            {{editable-value
+              value=student.councillor
+              onSave=(action @update student "councillor")
+            }}
           </td>
 
           <td class="text-right">
-            {{#editable-value value=student.registrationDate onSave=(action @update student 'registrationDate') as |editable|}}
+            {{#editable-value
+              value=student.registrationDate
+              onSave=(action @update student "registrationDate")
+            as |editable|
+            }}
               {{#if editable.isEditing}}
                 {{editable.datepicker}}
               {{else}}
-                {{moment-format student.registrationDate 'DD. MMMM'}}
+                {{moment-format student.registrationDate "DD. MMMM"}}
               {{/if}}
             {{/editable-value}}
           </td>
 
-          <td>{{editable-value value=student.comment onSave=(action @update student "comment")}}</td>
+          <td>
+            {{editable-value
+              value=student.comment
+              onSave=(action @update student "comment")
+            }}
+          </td>
 
           <td class="text-right">
-            {{#unless student.isBooked}}
+            {{#if student.isBooked}}
 
-              {{#bs-button type='success' size='sm' title='Anmelden' onClick=(action @book student)}}
-                {{fa-icon 'user-check'}}
-                {{bs-tooltip title='Anmelden'}}
+              {{#bs-button
+                type="danger"
+                size="sm"
+                title="Abmelden"
+                onClick=(action @unbook student)
+              }}
+                {{fa-icon "user-minus"}}
+                {{bs-tooltip title="Abmelden"}}
               {{/bs-button}}
 
             {{else}}
 
-              {{#bs-button type='danger' size='sm' title='Abmelden' onClick=(action @unbook student)}}
-                {{fa-icon 'user-minus'}}
-                {{bs-tooltip title='Abmelden'}}
+              {{#bs-button
+                type="success"
+                size="sm"
+                title="Anmelden"
+                onClick=(action @book student)
+              }}
+                {{fa-icon "user-check"}}
+                {{bs-tooltip title="Anmelden"}}
               {{/bs-button}}
 
-            {{/unless}}
+            {{/if}}
           </td>
 
         </tr>

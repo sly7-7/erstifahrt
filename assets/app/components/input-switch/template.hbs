@@ -1,5 +1,9 @@
 <label class="switch">
-  <input type="checkbox" id="hasPayed" checked={{@checked}}
-     onchange={{action onchange value='target.checked'}} />
+  <input
+    type="checkbox"
+    id="hasPayed"
+    checked={{@checked}}
+    onchange={{action onchange value="target.checked"}}
+  >
   <span class="slider fa {{if @checked "text-success" "text-danger"}}"></span>
 </label>

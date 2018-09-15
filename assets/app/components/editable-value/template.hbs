@@ -1,38 +1,66 @@
-<div class="editable-value {{if isEditing 'is-editing'}} {{if isPending 'is-pending'}}">
-  {{#unless isEditing}}
+<div
+  class="editable-value {{if isEditing "is-editing"}} {{if isPending "is-pending"}}"
+>
+  {{#if isEditing}}
+
+    {{#if hasBlock}}
+
+      {{yield
+        (hash
+          isEditing=true
+          controls=(component "editable-value/controls"
+            onCancel=(action "cancel")
+            isPending=isPending
+            onSave=(action "save"))
+          datepicker=(component "editable-value/datepicker"
+            value=@value
+            isPending=isPending
+            onChange=(action (mut newValue))
+            onEscape=(action "cancel")
+            onReturn=(action "save"))
+          select=(component "editable-value/select"
+            value=@value
+            onChange=(action (mut newValue))
+            onEscape=(action "cancel")
+            onReturn=(action "save"))
+          text=(component "editable-value/text"
+            value=@value
+            onChange=(action (mut newValue))
+            onEscape=(action "cancel")
+            onReturn=(action "save")))
+      }}
+
+    {{else}}
+
+      {{editable-value/text
+        value=@value
+        disabled=isPending
+        onChange=(action (mut newValue))
+        onEscape=(action "cancel")
+        onReturn=(action "save")
+      }}
+
+      {{editable-value/controls
+        onCancel=(action "cancel")
+        isPending=isPending
+        onSave=(action "save")
+      }}
+
+    {{/if}}
+  {{else}}
 
     {{#if hasBlock}}
       {{yield}}
     {{else}}
-      <span ondblclick={{action 'edit'}} onkeyup={{action 'onKeyup'}} tabindex="0">
+      <span ondblclick={{action "edit"}} onkeyup={{action "onKeyup"}} tabindex="0">
         {{@value}}
       </span>
     {{/if}}
 
-    <a class="toggle-mode" onclick={{action "edit"}}>
-      {{fa-icon 'pencil-alt'}}
-      {{bs-tooltip title='Bearbeiten'}}
+    <a role="button" class="toggle-mode" onclick={{action "edit"}}>
+      {{fa-icon "pencil-alt"}}
+      {{bs-tooltip title="Bearbeiten"}}
     </a>
 
-  {{else}}
-
-    {{#if hasBlock}}
-
-      {{yield (hash
-        isEditing=true
-        controls=(component 'editable-value/controls' onCancel=(action 'cancel') isPending=isPending onSave=(action 'save'))
-        datepicker=(component 'editable-value/datepicker' value=@value isPending=isPending onChange=(action (mut newValue)) onEscape=(action 'cancel') onReturn=(action 'save'))
-        select=(component 'editable-value/select' value=@value onChange=(action (mut newValue)) onEscape=(action 'cancel') onReturn=(action 'save'))
-        text=(component 'editable-value/text' value=@value onChange=(action (mut newValue)) onEscape=(action 'cancel') onReturn=(action 'save')))}}
-
-    {{else}}
-
-      {{editable-value/text value=@value disabled=isPending
-        onChange=(action (mut newValue)) onEscape=(action 'cancel') onReturn=(action 'save')}}
-
-      {{editable-value/controls onCancel=(action 'cancel') isPending=isPending onSave=(action "save")}}
-
-    {{/if}}
-
-  {{/unless}}
+  {{/if}}
 </div>
