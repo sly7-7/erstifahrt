@@ -1,0 +1,56 @@
+.register
+  $bg-gradient-end: $hhu-blue
+  $bg-gradient-start: $hhu-blue-30
+  $border-radius: .3rem
+  $text-color-button: #fff
+  $text-color-heading: #495057
+  $input-bg: #f8f9fa
+  $text-color: #383d41
+  background: -webkit-linear-gradient(left, $bg-gradient-start, $bg-gradient-end)
+  border-radius: $border-radius
+  margin-top: 3%
+  padding: 3%
+
+  .register-left
+    color: $text-color
+    display: flex
+    flex-direction: column
+    justify-content: center
+    margin-top: 4%
+    text-align: center
+
+    .subtitle
+      font-weight: lighter
+
+    .animation-container
+      margin-bottom: 5%
+      margin-top: 15%
+      width: 25%
+
+  .register-right
+    background: $input-bg
+    border-bottom-left-radius: 10% 50%
+    border-bottom-right-radius: $border-radius
+    border-top-left-radius: 10% 50%
+    border-top-right-radius: $border-radius
+
+    .register-heading
+      color: $text-color-heading
+      margin-bottom: -15%
+      margin-top: 8%
+      text-align: center
+
+    .register-form
+      margin-top: 10%
+      padding: 10%
+
+      input
+        font-weight: bold
+
+      .btn-register
+        border: 0
+        border-radius: 1.5rem
+        color: $text-color-button
+        font-weight: 600
+        padding: 2%
+        width: 50%

@@ -24,4 +24,6 @@ export default function() {
       token_type: 'bearer'
     };
   });
+
+  this.get('/trips');
 }

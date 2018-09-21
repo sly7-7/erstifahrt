@@ -1,0 +1,62 @@
+<div class="container register">
+  <div class="row">
+    <div class="col-md-3 register-left">
+      {{bus-animation}}
+      <h2>{{@trip.title}}</h2>
+      <small class="subtitle">powered by <a href="https://inphima.de" target="_blank">inphima.de</a></small>
+    </div>
+    <div class="col-md-9 register-right">
+      <h3 class="register-heading">Zur Fahrt anmelden</h3>
+      <div class="row register-form">
+
+        <div class="col-md-6">
+
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Vorname" value="">
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Nachname" value="">
+          </div>
+
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Geburtsdatum" value="">
+          </div>
+
+          <div class="form-group">
+            <select class="form-control">
+              <option class="hidden"  selected disabled>Studiengang</option>
+              <option>Informatik</option>
+              <option>Phsyik/Med. Physik</option>
+              <option>Mathematik</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="col-md-6">
+
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="E-Mail-Adresse" value="">
+
+            <div class="input-group-append">
+              <div class="input-group-text">@hhu.de</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <textarea class="form-control" rows="5" placeholder="Platz für Anmerkungen und Hinweise wie Lebensmittelunverträglichkeiten oder Ähnliches. Eure Angaben werden vertraulich behandelt."></textarea>
+          </div>
+
+          <div class="form-group text-right mt-4">
+            <button type="submit" role="button" class="btn btn-primary btn-register">
+              {{fa-icon 'bus-alt'}} Anmelden
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

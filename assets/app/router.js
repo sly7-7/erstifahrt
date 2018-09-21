@@ -9,6 +9,8 @@ class Router extends EmberRouter {
 Router.map(function() {
   this.route('login');
 
+  this.route('register', { path: '/anmelden' });
+
   this.route('authenticated', { path: '/' }, function() {
     this.route('students', { path: '/', resetNamespace: true });
     this.route('trip', { path: '/aktuelle-fahrt', resetNamespace: true });
