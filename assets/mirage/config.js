@@ -2,10 +2,7 @@ import Response from 'ember-cli-mirage/response';
 
 export default function() {
 
-  this.get('/students', (schema/*, request*/) => {
-    return schema.students.all();
-  });
-
+  this.get('/students');
   this.patch('/students/2', () => new Response(500, { 'Content-Type': 'text/plain' }, 'Student id 2 geht nich!!!'));
   this.patch('/students/:id');
 
