@@ -4,8 +4,17 @@ import { action } from '@ember-decorators/object';
 
 import Notable from 'erstifahrt/mixins/notable';
 
+export const SUBJECTS = [
+  'Informatik',
+  'Mathematik',
+  'Med. Physik',
+  'Physik'
+];
+
 @Notable
 export default class StudentsController extends Controller {
+  subjects = SUBJECTS;
+
   @action
   async book(student) {
     this.resetMessage();
@@ -62,11 +71,4 @@ export default class StudentsController extends Controller {
 
     this.success(`${student.fullName} wurde erfolgreich bearbeitet.`);
   }
-
-  subjects = [
-    'Informatik',
-    'Mathematik',
-    'Med. Physik',
-    'Physik'
-  ]
 }

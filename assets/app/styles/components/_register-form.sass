@@ -1,4 +1,4 @@
-.register
+.register-form
   $bg-gradient-end: $hhu-blue
   $bg-gradient-start: $hhu-blue-30
   $border-radius: .3rem
@@ -6,10 +6,16 @@
   $text-color-heading: #495057
   $input-bg: #f8f9fa
   $text-color: #383d41
-  background: -webkit-linear-gradient(left, $bg-gradient-start, $bg-gradient-end)
-  border-radius: $border-radius
-  margin-top: 3%
-  padding: 3%
+  align-items: center
+  display: flex
+  height: 100%
+
+  .register
+    background: -webkit-linear-gradient(left, $bg-gradient-start 24%, $bg-gradient-end)
+    border-radius: $border-radius
+    box-shadow: 0 0 30px 1px darken($hhu-blue, 20%)
+    margin-top: 3%
+    padding: 3%
 
   .register-left
     color: $text-color
@@ -28,29 +34,24 @@
       width: 25%
 
   .register-right
-    background: $input-bg
+    background: -webkit-linear-gradient(left, $input-bg, darken($input-bg, 7%))
     border-bottom-left-radius: 10% 50%
     border-bottom-right-radius: $border-radius
     border-top-left-radius: 10% 50%
     border-top-right-radius: $border-radius
+    padding-left: 5rem
 
     .register-heading
       color: $text-color-heading
-      margin-bottom: -15%
-      margin-top: 8%
       text-align: center
 
-    .register-form
-      margin-top: 10%
-      padding: 10%
+    ::placeholder
+      $placeholder-color: #999 // ember-power-select color
+      color: $placeholder-color
 
-      input
-        font-weight: bold
-
-      .btn-register
-        border: 0
-        border-radius: 1.5rem
-        color: $text-color-button
-        font-weight: 600
-        padding: 2%
-        width: 50%
+    .btn-register
+      border: 0
+      border-radius: 2rem
+      color: $text-color-button
+      font-weight: 600
+      padding: .5rem 1rem
