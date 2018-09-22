@@ -1,0 +1,53 @@
+<input
+  type="text"
+  class={{inputClassNames}}
+  onclick={{action "open"}}
+  onkeypress={{action "keypress"}}
+  placeholder={{placeholder}}
+  value={{formattedDate}}
+>
+
+{{#bs-popover triggerEvents="" visible=opened placement="top"}}
+  <div class="text-center">
+    {{#power-calendar
+      classNames="input-date-datepicker"
+      center=currentDate
+      selected=value
+      onCenterChange=(action (mut currentDate) value="date")
+      onSelect=(action (mut selected) value="date")
+    as |calendar|
+    }}
+
+      {{#calendar.nav}}
+
+        <span role="button" class="with-invisible-select">
+          {{#with (moment-format calendar.center 'MMMM') as |currentMonth|}}
+            {{currentMonth}}
+            <select onchange={{action "changeCenter" "month" calendar}}>
+              {{#each months as |month|}}
+              <option value="{{month}}" selected={{eq month currentMonth}}>{{month}}</option>
+              {{/each}}
+            </select>
+          {{/with}}
+        </span>
+
+        <span role="button" class="with-invisible-select">
+          {{#with (moment-format calendar.center 'YYYY') as |currentYear|}}
+            {{currentYear}}
+            <select onchange={{action "changeCenter" "year" calendar}}>
+              {{#each years as |year|}}
+              <option value="{{year}}" selected={{eq year currentYear}}>{{year}}</option>
+              {{/each}}
+            </select>
+          {{/with}}
+        </span>
+
+      {{/calendar.nav}}
+
+      {{calendar.days}}
+
+    {{/power-calendar}}
+
+    {{yield}}
+  </div>
+{{/bs-popover}}

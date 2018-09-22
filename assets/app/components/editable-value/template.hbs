@@ -2,7 +2,8 @@
   class="editable-value {{if isEditing "is-editing"}} {{if isPending "is-pending"}}"
 >
   {{#if isEditing}}
-
+  {{!-- TODO set isEditing to false removes the data input control immediately
+             This is incompatible with e.g. closing the datepicker --}}
     {{#if hasBlock}}
 
       {{yield
