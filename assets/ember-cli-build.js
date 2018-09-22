@@ -1,6 +1,7 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
+const autoprefixer = require('autoprefixer');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
@@ -12,6 +13,14 @@ module.exports = function(defaults) {
       'bootstrapVersion': 4,
       'importBootstrapFont': false,
       'importBootstrapCSS': false
+    },
+
+    postcssOptions: {
+      compile: { enabled: false },
+      filter: {
+        enabled: true,
+        plugins: [ { module: autoprefixer } ]
+      }
     }
   });
 
