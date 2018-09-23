@@ -24,6 +24,11 @@ module.exports = function(environment) {
 
     moment: {
       includeLocales: ['de']
+    },
+
+    '@ember-decorators/argument': {
+      typeRequired: true,
+      ignoreComponentsWithoutValidations: true
     }
   };
 
