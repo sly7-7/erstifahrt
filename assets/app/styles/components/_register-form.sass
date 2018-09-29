@@ -55,3 +55,20 @@
       color: $text-color-button
       font-weight: 600
       padding: .5rem 1rem
+
+  .required
+    display: flex
+
+    .ember-power-select-trigger,
+    .form-control,
+    .input-datepicker
+      flex-grow: 1
+
+    &::before
+      align-self: center
+      color: $hhu-blue-70
+      content: '\f005'
+      font-family: 'Font Awesome 5 Free'
+      font-size: .5rem
+      font-weight: 900
+      margin-right: .5rem

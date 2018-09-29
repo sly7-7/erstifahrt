@@ -19,6 +19,6 @@ export default class RegisterFormComponent extends Component {
   submit(e) {
     e.preventDefault();
 
-    alert('submit');
+    debugger
   }
 }

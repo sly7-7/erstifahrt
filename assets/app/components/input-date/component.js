@@ -18,6 +18,8 @@ export default class InputDateComponent extends Component {
 
   @type(optional('string')) @argument placeholder = "Datum";
 
+  @type(optional('boolean')) @argument required = false;
+
   @type(optional(Function)) @argument async onChange() {}
 
   @type(optional(Date)) @argument value;

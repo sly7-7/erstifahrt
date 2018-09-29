@@ -16,28 +16,32 @@
 
         <div class="col-md-6">
 
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Vorname" value="">
+          <div class="form-group required">
+            <input type="text" class="form-control" placeholder="Vorname" value="" required
+              onchange={{action (mut data.firstName) value="target.value"}}>
           </div>
 
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Nachname" value="">
+          <div class="form-group required">
+            <input type="text" class="form-control" placeholder="Nachname" value="" required
+              onchange={{action (mut data.lastName) value="target.value"}}>
           </div>
 
-          <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="E-Mail-Adresse" value="">
+          <div class="input-group mb-3 required">
+            <input type="email" class="form-control" placeholder="E-Mail-Adresse" value="" required
+              onchange={{action (mut data.email) value="target.value"}}>
 
             <div class="input-group-append">
               <div class="input-group-text">@hhu.de</div>
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group required">
             {{input-date
               closeOnChange=true
               format="LL"
               onChange=(action (mut data.dateOfBirth))
               placeholder="Geburtsdatum"
+              required=true
               value=data.dateOfBirth
             }}
           </div>
@@ -46,10 +50,11 @@
 
         <div class="col-md-6">
 
-          <div class="form-group">
+          <div class="form-group required">
             {{#power-select
               options=subjects
               placeholder="Studiengang"
+              required=true
               searchEnabled=false
               selected=data.subject
               onchange=(action (mut data.subject))
@@ -59,10 +64,11 @@
             {{/power-select}}
           </div>
 
-          <div class="form-group">
+          <div class="form-group required">
             {{#power-select
               options=nutritions
               placeholder="Ernährungsform"
+              required=true
               searchEnabled=false
               selected=data.nutrition
               onchange=(action (mut data.nutrition))
@@ -78,6 +84,10 @@
 
         </div>
 
+      </div>
+
+      <div class="required">
+        Pflichtfeld
       </div>
 
       <div class="form-group text-right mt-2">
