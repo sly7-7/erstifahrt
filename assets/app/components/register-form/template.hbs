@@ -8,75 +8,123 @@
 
     </div>
 
-    <div class="col-md-9 register-right">
+    {{#bs-form
+      classNames="col-md-9 register-right"
+      model=student
+      novalidate=true
+      onInvalid=(action 'invalid')
+      onSubmit=(action 'register')
+      as |form|
+    }}
 
       <h3 class="register-heading mt-4 mb-4">Zur Fahrt anmelden</h3>
+
+      {{#if hasError}}
+        <div class="alert alert-danger fade show">
+          <strong>Bei der Anmeldung sind Fehler aufgetreten</strong>
+
+          {{#if errorMessages}}
+            <ul>
+              {{#each errorMessages as |message|}}
+                <li>{{message}}</li>
+              {{/each}}
+            </ul>
+
+          {{else}}
+            <p>
+              Ein unbekannter Fehler ist aufgetreten. Bitte versuch es noch einmal oder wende dich
+              per E-Mail an <a href="mailto:fscs@hhu.de">fscs@hhu.de</a>.
+            </p>
+          {{/if}}
+        </div>
+      {{/if}}
 
       <div class="row register-form-form mt-2 mb-4">
 
         <div class="col-md-6">
 
-          <div class="form-group required">
-            <input type="text" class="form-control" placeholder="Vorname" value="" required
-              onchange={{action (mut data.firstName) value="target.value"}}>
-          </div>
+          {{form.element
+            invisibleLabel=true
+            placeholder="Vorname"
+            property="firstName"
+          }}
 
-          <div class="form-group required">
-            <input type="text" class="form-control" placeholder="Nachname" value="" required
-              onchange={{action (mut data.lastName) value="target.value"}}>
-          </div>
+          {{form.element
+            invisibleLabel=true
+            placeholder="Nachname"
+            property="lastName"
+          }}
 
-          <div class="input-group mb-3 required">
-            <input type="email" class="form-control" placeholder="E-Mail-Adresse" value="" required
-              onchange={{action (mut data.email) value="target.value"}}>
+          {{#form.element
+            classNames="input-group mb-3"
+            controlType="email"
+            invisibleLabel=true
+            placeholder="Uni-Mail"
+            property="email"
+          as |el|
+          }}
+            {{el.control}}
 
             <div class="input-group-append">
               <div class="input-group-text">@hhu.de</div>
             </div>
-          </div>
+          {{/form.element}}
 
-          <div class="form-group required">
+          {{#form.element
+            invisibleLabel=true
+            property="dateOfBirth"
+          as |el|
+          }}
             {{input-date
               closeOnChange=true
               format="LL"
-              onChange=(action (mut data.dateOfBirth))
+              onChange=(action (mut el.value))
               placeholder="Geburtsdatum"
-              required=true
-              value=data.dateOfBirth
+              value=el.value
+              validationClass=(validation-class el.validation)
             }}
-          </div>
+          {{/form.element}}
 
         </div>
 
         <div class="col-md-6">
 
-          <div class="form-group required">
+          {{#form.element
+            invisibleLabel=true
+            property="subject"
+          as |el|
+          }}
             {{#power-select
+              triggerClass=(concat (validation-class el.validation) " form-control")
               options=subjects
               placeholder="Studiengang"
-              required=true
               searchEnabled=false
-              selected=data.subject
-              onchange=(action (mut data.subject))
+              selected=el.value
+              onchange=(action (mut el.value))
             as |value|
             }}
               {{value}}
             {{/power-select}}
-          </div>
+          {{/form.element}}
 
-          <div class="form-group required">
+          {{#form.element
+            customError=student.errors.nutrition.firstObject.message
+            invisibleLabel=true
+            property="nutrition"
+          as |el|
+          }}
             {{#power-select
+              triggerClass=(concat (validation-class el.validation) " form-control")
               options=nutritions
               placeholder="Ernährungsform"
-              required=true
               searchEnabled=false
-              selected=data.nutrition
-              onchange=(action (mut data.nutrition))
+              selected=student.nutrition
+              onchange=(action (mut student.nutrition))
             as |value|
             }}
               {{value}}
             {{/power-select}}
-          </div>
+          {{/form.element}}
 
           <div class="form-group">
             <textarea class="form-control" rows="4" placeholder="Anmerkungen und Hinweise wie Lebensmittelunverträglichkeiten oder Ähnliches. Eure Angaben werden vertraulich behandelt."></textarea>
@@ -86,17 +134,27 @@
 
       </div>
 
-      <div class="required">
+      <div class="is-required">
         Pflichtfeld
       </div>
 
       <div class="form-group text-right mt-2">
-        <button type="submit" role="button" class="btn btn-primary btn-register">
-          {{fa-icon 'bus-alt'}} Anmelden
-        </button>
+        {{#bs-button
+          buttonType="submit"
+          classNames="btn-register"
+          defaultText="Anmelden"
+          disabled=form.isSubmitting
+          type="primary"
+        }}
+          {{#if form.isSubmitting}}
+            {{fa-icon "compass" prefix="far" spin=true classNames="toggle-mode"}}
+          {{else}}
+            {{fa-icon 'bus-alt'}}
+          {{/if}}
+        {{/bs-button}}
       </div>
 
-    </div>
+    {{/bs-form}}
 
   </div>
 

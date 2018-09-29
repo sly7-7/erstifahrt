@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { isEmpty } from '@ember/utils';
 import { argument } from '@ember-decorators/argument';
 import { optional, type } from '@ember-decorators/argument/type';
-import { classNames } from '@ember-decorators/component';
+import { className, classNames } from '@ember-decorators/component';
 import { action, computed } from '@ember-decorators/object';
 import moment from 'moment';
 
@@ -23,6 +23,8 @@ export default class InputDateComponent extends Component {
   @type(optional(Function)) @argument async onChange() {}
 
   @type(optional(Date)) @argument value;
+
+  @className @type(optional('string')) @argument validationClass;
 
   months = [
     'Januar',

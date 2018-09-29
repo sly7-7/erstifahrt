@@ -56,13 +56,18 @@
       font-weight: 600
       padding: .5rem 1rem
 
-  .required
+  .is-required
     display: flex
+    flex-wrap: wrap
 
     .ember-power-select-trigger,
     .form-control,
     .input-datepicker
-      flex-grow: 1
+      flex: 1 1 auto
+      width: auto
+
+    .input-datepicker > .form-control
+      width: 100%
 
     &::before
       align-self: center
@@ -72,3 +77,22 @@
       font-size: .5rem
       font-weight: 900
       margin-right: .5rem
+
+.is-invalid
+  & + .input-group-append
+    &:not(:last-child) > .input-group-text
+      border-bottom-right-radius: .25rem
+      border-top-right-radius: .25rem
+
+  .ember-power-select-trigger,
+  .form-control,
+  .input-datepicker
+    border-color: $form-feedback-invalid-color
+
+.form-control
+  &.ember-power-select-trigger
+    display: flex
+
+    .ember-power-select-placeholder,
+    .ember-power-select-selected-item
+      align-self: center

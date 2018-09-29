@@ -2,7 +2,9 @@ import Model from 'ember-data/model';
 import { attr } from '@ember-decorators/data';
 import { computed } from '@ember-decorators/object';
 
-export default class Student extends Model {
+import Validations from './validations';
+
+export default class Student extends Model.extend(Validations) {
   @attr comment;
 
   @attr councillor;

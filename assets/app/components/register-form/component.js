@@ -1,12 +1,23 @@
 import Component from '@ember/component';
-import { classNames, tagName } from '@ember-decorators/component';
+import { argument } from '@ember-decorators/argument';
+import { type } from '@ember-decorators/argument/type';
+import { classNames } from '@ember-decorators/component';
+import { action } from '@ember-decorators/object';
 
+import Student from '../../student/model';
+import Trip from '../../trip/model';
 import { SUBJECTS } from '../../students/controller';
 
 @classNames('register-form')
-@tagName('form')
 export default class RegisterFormComponent extends Component {
-  data = {};
+  errorMessages = [];
+
+  hasError = false;
+
+  @action
+  invalid() {
+    this.setError(this.student.validations.messages);
+  }
 
   nutritions = [
     'Omnivor',
@@ -14,11 +25,30 @@ export default class RegisterFormComponent extends Component {
     'Vegan'
   ];
 
+  @argument @type(Function) onSubmit;
+
+  @argument @type(Student) student;
+
   subjects = SUBJECTS;
 
-  submit(e) {
-    e.preventDefault();
+  @action
+  async register(data) {
+    this.resetError();
 
-    debugger
+    try {
+      await this.onSubmit(data);
+    } catch(e) {
+      this.setError(this.student.validations.messages);
+    }
   }
+
+  setError(errorMessages) {
+    this.setProperties({ hasError: true, errorMessages });
+  }
+
+  resetError() {
+    this.setProperties({ hasError: false, errorMessages: [] });
+  }
+
+  @argument @type(Trip) trip;
 }
