@@ -7,9 +7,13 @@ export default class Student extends Model {
 
   @attr councillor;
 
+  @attr email
+
   @attr firstName;
 
   @attr lastName;
+
+  @attr nutrition;
 
   @attr subject;
 
