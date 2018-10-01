@@ -1,0 +1,90 @@
+<article class="registration">
+  <div class="container">
+
+    <h1 class="text-center">
+      Anmeldung zur Erstifahrt
+      <small>von {{model.fullName}}</small>
+    </h1>
+
+    <div class="card">
+      <div class="card-body">
+
+        <p>
+          Deine Anmeldung vom <strong>{{moment-format model.registrationDate "DD. MMMM"}}</strong>
+          war erfolgreich.  Hier kannst du den aktuellen Status deiner Anmeldung sehen. Sobald,
+          dieser auf "bestätigt" ist, bist du fest für die Fahrt angemeldet.
+        </p>
+
+        <p class="registration-state {{if model.isBooked "text-success" "text-warning"}}">
+          Dein Status ist:
+
+          {{#if model.isBooked}}
+
+            <div class="icon booked">
+              {{fa-icon "calendar-check"}}
+            </div>
+
+            <strong>bestätigt!</strong>
+
+          {{else}}
+
+            <div class="icon">
+              {{fa-icon "hourglass-start"}}
+            </div>
+
+            <strong>angemeldet!</strong>
+
+          {{/if}}
+
+          {{!-- TODO:
+            {{#if model.isCancelled}}
+              {{fa-icon "user-lock" classNames="text-danger"}}
+            {{/if}}
+          --}}
+
+        </p>
+
+        <section>
+          <h2>Anmeldedaten</h2>
+        </section>
+
+        <dl>
+          <dt>Name</dt>
+          <dd>{{model.fullName}}</dd>
+          <dt>Uni-Mail</dt>
+          <dd>{{model.email}}</dd>
+          <dt>Geburtsdatum</dt>
+          <dd>{{moment-format model.dateOfBirth "LL"}}</dd>
+          <dt>Studiengang</dt>
+          <dd>{{model.subject}}</dd>
+          <dt>Ernährungsform</dt>
+          <dd>{{model.nutrition}}</dd>
+          <dt>Kommentar</dt>
+          <dd>{{model.comment}}</dd>
+        </dl>
+
+        <section>
+          <h2>Anmeldeformular runterladen</h2>
+
+          <p>
+            Um die Anmeldung abzuschließen musst du das Anmeldeformular runterladen, ausfüllen und
+            in die Info-Fachschaft zusammen mit der Teilnahmegebühr von
+            <strong>{{model.trip.price}} €</strong> abgeben.  Ein Fachschaftsrat nimmt dies
+            entgegen und schließt die Anmeldung ab. Damit ist dein Platz sicher.
+          </p>
+
+          <p>
+            Das Anmeldeformular kannst du dir unter der folgenden Adresse runterladen:
+            <a href={{model.registrationSheetURL}}>{{model.registrationSheetURL}}</a>
+            </p>
+        </section>
+
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="text-center">
+    powered by <a href="https://inphima.de">inphima.de</a>
+  </footer>
+</article>

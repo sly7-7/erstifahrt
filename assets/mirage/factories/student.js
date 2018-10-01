@@ -34,6 +34,8 @@ export default Factory.extend({
     return i;
   },
 
+  registrationSheetURL: faker.internet.url,
+
   subject() {
     return faker.random.arrayElement([
       'Informatik',

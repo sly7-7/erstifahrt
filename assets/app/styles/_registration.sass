@@ -1,0 +1,83 @@
+.registration
+  $bg-color: #f6f6f6
+  background: $bg-color
+  height: 100%
+  overflow: auto
+  padding: 3rem 0
+  width: 100%
+
+  h1
+    color: $hhu-blue-70
+    margin-bottom: 2rem
+
+    small
+      color: $body-color
+      display: block
+      margin-top: 1.2rem
+
+  h2
+    $border-color: rgba(0, 0, 0, .1)
+    border-bottom: 1px solid $border-color
+    font-size: 1.5rem
+    margin-bottom: .8rem
+
+  .card
+    $border-color: $hhu-blue
+    $shadow-color: rgba(0, 0, 0, .075)
+    background-image: url('../inphima.png')
+    background-position: 95% 95%
+    background-repeat: no-repeat
+    border-radius: 0
+    border-top: 2px solid $hhu-blue
+    box-shadow: 0 2px 10px $shadow-color
+    margin: auto
+    max-width: 600px
+    min-height: 500px
+    position: relative
+
+    &::before
+      $overlay-color: rgba(255, 255, 255, .9)
+      background: $overlay-color
+      content: ''
+      height: 100%
+      position: absolute
+      width: 100%
+
+    .card-body
+      padding: 4rem
+      z-index: 2
+
+  .registration-state
+    flex-direction: column
+    font-size: 1.2rem
+
+    &,
+    .icon
+      align-items: center
+      display: flex
+
+    .icon
+      $size: 15rem
+      $bg-default: rgba($warning, .3)
+      $bg-success: rgba($success, .3)
+      background: $bg-default
+      border-radius: $size
+      height: $size
+      justify-content: center
+      margin: .3rem 0
+      width: $size
+
+      &.booked
+        background: $bg-success
+
+      svg
+        height: $size * .65
+        width: $size * .65
+
+    strong
+      font-variant: small-caps
+
+  footer
+    font-size: .8rem
+    margin-top: 2rem
+    text-align: center

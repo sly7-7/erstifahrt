@@ -11,6 +11,8 @@ Router.map(function() {
 
   this.route('register', { path: '/anmelden' });
 
+  this.route('registration', { path: '/anmeldung/:student_id' });
+
   this.route('authenticated', { path: '/' }, function() {
     this.route('students', { path: '/', resetNamespace: true });
     this.route('trip', { path: '/aktuelle-fahrt', resetNamespace: true });

@@ -29,6 +29,8 @@ export default class Student extends Model.extend(Validations) {
 
   @attr('number') registrationNumber;
 
+  @attr('string') registrationSheetURL;
+
   @computed('firstName', 'lastName')
   get fullName() {
     return `${this.get('firstName')} ${this.get('lastName')}`;

@@ -3,28 +3,32 @@ import Response from 'ember-cli-mirage/response';
 export default function() {
 
   this.get('/students');
+  this.get('/students/:id');
   this.patch('/students/2', () => new Response(500, { 'Content-Type': 'text/plain' }, 'Student id 2 geht nich!!!'));
   this.patch('/students/:id');
-  //this.post('/students');
-  this.post('/students', (schema, { requestBody }) => {
+  this.post('/students', ({ students }, { requestBody }) => {
     const { data: { attributes } } = JSON.parse(requestBody);
-    let errors = [];
 
-    for (let attr in attributes) {
-      if (attributes[attr] === "error") {
-        errors.push({
-          source: { pointer: `/data/attributes/${attr}` },
-          status: "422",
-          title: `${attr} ausfüllen!`
-        });
-      }
+    const errors = Object.keys(attributes)
+      .filter(attr => attributes[attr] === "error")
+      .map(attr => ({
+        source: { pointer: `/data/attributes/${attr}` },
+        status: "422",
+        title: `${attr} ausfüllen!`
+      })
+    );
+
+    if (errors.length) {
+      return new Response(
+        422,
+        {},
+        { errors }
+      );
     }
 
-    return new Response(
-      422,
-      {},
-      { errors }
-    );
+    const student = students.create(attributes);
+
+    return student;
   });
 
   this.post('/token', (schema, { requestBody }) => {
