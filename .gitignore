@@ -17,3 +17,5 @@ man/*
 
 # files generated during packaging
 /lib/bundler/generated/
+
+/db/*.sqlite3

@@ -2,6 +2,8 @@ import Response from 'ember-cli-mirage/response';
 
 export default function() {
 
+  this.namespace = 'api';
+
   this.get('/students');
   this.get('/students/:id');
   this.patch('/students/2', () => new Response(500, { 'Content-Type': 'text/plain' }, 'Student id 2 geht nich!!!'));
