@@ -1,2 +1,19 @@
 /public
 /vendor
+
+# files created by running the specs
+/tmp/
+
+# gems built by `rake build`
+/pkg/
+
+# output from ronn
+/lib/bundler/man/
+man/*
+!man/*.ronn
+
+# rspec failure tracking
+.rspec_status
+
+# files generated during packaging
+/lib/bundler/generated/
