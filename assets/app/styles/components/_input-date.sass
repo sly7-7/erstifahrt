@@ -1,6 +1,6 @@
 .input-date-datepicker
   @include ember-power-calendar($cell-size: 25px, $primary-color: $hhu-blue)
-  margin: 0 auto 1rem
+  margin: 0 auto
 
   button,
   select
@@ -18,3 +18,12 @@
       position: absolute
       right: 0
       top: 0
+
+  ~ .btn
+    margin-top: 1rem
+
+    &.btn-link
+      margin-top: 0
+
+      &:hover
+        text-decoration: none

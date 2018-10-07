@@ -75,14 +75,23 @@
             property="dateOfBirth"
           as |el|
           }}
-            {{input-date
+            {{#input-date
               closeOnChange=true
               format="LL"
               onChange=(action (mut el.value))
               placeholder="Geburtsdatum"
               value=el.value
               validationClass=(validation-class el.validation)
+            as |datepicker|
             }}
+              <button
+                class="btn btn-sm btn-link"
+                onclick={{action datepicker.close}}
+                role="button"
+              >
+                {{fa-icon "times"}} Schließen
+              </button>
+            {{/input-date}}
           {{/form.element}}
 
         </div>
