@@ -20,6 +20,8 @@ WORKDIR /app
 RUN rm -rf /app/assets
 
 COPY --from=0 /usr/local/bundle /usr/local/bundle
-COPY --from=1 /app/dist /app/public
+COPY --from=1 /app/dist /app/assets/dist
 
-CMD ["bundle", "exec", "ruby", "app.rb"]
+EXPOSE 9292
+
+CMD ["bundle", "exec", "rackup", "-p9292", "-o0.0.0.0"]

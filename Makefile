@@ -15,4 +15,17 @@ docker-build:
 docker-push: docker-build
 	docker push $(IMAGE)
 	docker push $(FULL_TAG)
+.PHONY: docker-push
 
+CONTAINER ?= erstifahrt-dev
+NETWORK ?= $(CONTAINER)-net
+docker-create: docker-clean docker-build
+	docker create --name $(CONTAINER) --network $(NETWORK) -p9292:9292 -v$(shell pwd):/app $(IMAGE):latest
+.PHONY: docker-create
+
+docker-start:
+	docker start -a $(CONTAINER)
+.PHONY: docker-run
+
+docker-clean:
+	docker rm -f $(CONTAINER) || true
