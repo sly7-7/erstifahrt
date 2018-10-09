@@ -1,7 +1,7 @@
 require 'sinatra/base'
 
-module Erstifahrt
-  class Assets < Sinatra::Base
+module Erstifahrt::Assets
+  class App < Sinatra::Base
     set :public_folder, 'assets/dist/'
 
     get '*', provides: 'html' do

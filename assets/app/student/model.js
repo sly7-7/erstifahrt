@@ -1,5 +1,5 @@
 import Model from 'ember-data/model';
-import { attr } from '@ember-decorators/data';
+import { attr, belongsTo } from '@ember-decorators/data';
 import { computed } from '@ember-decorators/object';
 
 import Validations from './validations';
@@ -23,6 +23,8 @@ export default class Student extends Model.extend(Validations) {
 
   @attr('boolean') isBooked;
 
+  @attr('boolean') isCanceled;
+
   @attr('date') dateOfBirth;
 
   @attr('date') registrationDate;
@@ -30,6 +32,8 @@ export default class Student extends Model.extend(Validations) {
   @attr('number') registrationNumber;
 
   @attr('string') registrationSheetURL;
+
+  @belongsTo trip;
 
   @computed('firstName', 'lastName')
   get fullName() {
