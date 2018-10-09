@@ -1,6 +1,4 @@
 require 'sinatra/base'
-require 'sinatra/activerecord'
-require 'jsonapi/serializable/renderer'
 
 require_relative './api/models/student'
 require_relative './api/models/trip'
@@ -9,40 +7,14 @@ require_relative './api/resources/trip'
 
 module Erstifahrt::Api
   class App < Sinatra::Base
-    register Sinatra::ActiveRecordExtension
+    register Sinatra::Config
 
-    set :database_file, '../config/database.yml'
+    app_config
 
     set :serializer, {
-      Student: Serializers::SerializableStudent,
-      Trip: Serializers::SerializableTrip
+      Student: Erstifahrt::Api::Serializers::SerializableStudent,
+      Trip: Erstifahrt::Api::Serializers::SerializableTrip
     }
-
-    set :show_exceptions, :after_handler
-
-    mime_type :json, 'application/vnd.api+json'
-
-    before do
-      content_type :json
-    end
-
-    not_found do
-      { errors: [ title: 'Not found', detail: "Path '#{request.path}' not found" ] }.to_json
-    end
-
-    error ActiveRecord::RecordInvalid do
-      errors = env['sinatra.error'].record.errors
-
-      [
-        422,
-        {
-          errors: errors.messages.reduce([]) do |errs, (attr, messages)|
-            base = { title: 'Attribute invalid', source: { pointer: "/data/attributes/#{attr}" } }
-            errs + messages.map { |message| base.merge detail: message }
-          end
-        }.to_json
-      ]
-    end
 
     get '/trips' do
       trip = Trip.first
@@ -64,7 +36,7 @@ module Erstifahrt::Api
     end
 
     def renderer
-      @renderer ||= JSONAPI::Serializable::Renderer.new
+      settings.renderer
     end
   end
 end
