@@ -21,7 +21,7 @@ module Erstifahrt::Api
       )
 
       attribute('registration_date') { @object.created_at }
-      attribute('registration_sheet_url') { "/anmeldung/#{@object.id}/anmeldeformular.pdf" }
+      attribute('registration_sheet_url') { @app.url @object.registration_sheet_path, true, false }
     end
   end
 end

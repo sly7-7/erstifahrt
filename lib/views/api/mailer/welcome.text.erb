@@ -1,0 +1,87 @@
+Hallo <%= @student.first_name %>,
+
+du hast dich zur <%= @student.trip.title %> angemeldet. Zum Abschluss deiner Anmeldung sind nur noch
+wenige Schritte erforderlich.
+
+  1. E-Mail-Adresse bestätigen: <%= @app.url @student.activation_path, true, false %>
+  2. Anmeldeformular unter <%= @app.url @student.registration_sheet_path, true, false %> runterladen und ausfüllen
+  3. Mit dem ausgefüllen Formular und der Teilnahmegebühr von <%= @student.trip.fee %> € in eine der
+     3 Fachschaften kommen
+  4. Ganz viel Spaß haben!
+
+
+Wir freuen uns! Dein InPhiMa Erstifahrt-Team
+
+
+--
+InPhiMa
+Fachschaften Informatik, Mathematik, Physik &amp; Medizinische Physik und Naturwissenschaften
+
+https://inphima.de
+https://fachschaft24.de
+https://facebook.com/inphima
+
+                                                           .';:lodxkOO00KKKKKK000Okxdol:;'..
+                                                    ..;cok0KXXK0Okdoolccc::::cccllodxO0KXXK0koc;..
+                                                .;lx0XXKOdl:,..                       ...,:ldOKXX0xl;.
+                                            .;lkKXKko:'.                                      .':okKXXko;.
+                                         .:xKNKxc,.                                                .,lxKNKx:.                   .....
+                                      .:kXN0o;.                                                        .;o0NXkc.     ..,:loddxxxxxxxxxxxol;.
+                                   .,dKN0o,.                                                              .,o0NKdlldxkxxolc:,'........',cOX:
+                                 .cONKd;.                                                                 .'ckXKOdl;'.   .,;,.           oX:
+                               .l0N0l.                                                                .;lxkkdc,.      .oOXWWWXOo,.      .k0,
+                             .lKN0c.                                                              .,lxkxo;.           cNMWNNMMMMNOl'    ;Kx.
+                           .:0N0c.                                                             .:dOko;.    .;'        ,KMXl;xXMMMMWXx' .xK;
+                          'xNXo.                                                           .,lkOxc'    .;d0NWXd.      .xWWx:oXMMWNNKc. cKo.
+                        .cKNk,                                                          .,okkd;.       :XMMMMMWKc.     ;KMWWMMWOc''.  ;0k.
+                       .xNXl.                                                        .,okko,. .;codl'  .xWMMMMMMNk'    .oWMMWO:.     ,OO'
+                      ,OWO,                                                        'okkd;.    ;0WMMWXx, ,0MMWNWMMMXo.   .kWMWO'     ,OO,
+                     :KNk.                                                      .ckOdlcdo;.    .dNMMMMNx:oXMW0kXMMMW0:.  ,0MWO,    ;0k'
+                    :XNd.                                                    .:xOxlcoO0kdc'      cKMMMMMNXWMMNdcOWMMMWO:. :kl.   .lKx.
+                   :KNd.                                                  ':oOkoclxkkkdlllodooc'  ,OWMMNXWMMMMK:'xWMMMMW0:.     .xKo.
+                  ;KWx.                                                .:xOOdccd0Odd0KKOkxxkOKNNOl.'kWMNkokNMMWO'.oXMMMMKc     :0WX:
+                 'OWk.                                               .lOOl::lxkOocOWMMWOc''';:cxNWKc,dNMNd,,dKWWx. ;OWNx'    .d0k0WO'
+                .xW0,                                              'dOk:. .::   .'ox0WMW0d;   . ,kWWk:oNMWO' .cOXd. .:;.   .c0O; ,0Wx.
+                cXNl                                             ,x0d,,,.     .:ol,',oKWMKc'     .lXMKclXMMKc. .;o:       ;k0l.   cNXc
+               .OWk.                                           ;x0o' .kNx'    .dWO'   'k0llkc      ;KWK:;0WMNx'   .     ,x0d.     .kWO.
+               cNX:                                          ,x0o.   oWMWK:.  .OM0,     ;oXMXo.     :KWd.'kWMWK:      'd0x'        :XNc
+              .kMk.                                        'd0d'     :KMMMNKd..dWWx.    'd0WMWKd    ,xWx. .oXMNo.   'd0x,          .kMk.
+              ;KWl                                       .l0k,        'kNMMMW0:;OWWk.    :okXWMN0o  ,xXc    ,l,   ,x0x,             lNX;
+              lWX;                                      ,k0c.  .,:;'.  .cKWMMMNxlkNW0c      'dNNOxo:o0l.       .;x0d'               ;KWl
+             .xMO.                                    .l0x'   ;kNMWNKkl'.'xKNMMWKdo0WNk;.    .oxkNNXNk' .:o, .ckOl.                 .OMx.
+             .kMk.                        ..';:::;,. .dKo. .'cXMMMMMMMMNOoccoKMMMNkclONN0o;'.cdxXWMMWXkdkdc:dOk:.                   .kMk.
+             .OMx.                    .:oxkxxddoodxkk0Kl  cKKddKINPHIMAMMMWNXXMMMMWKl',ldkOkddol:oXMMNOl:cxOd,                      .xMO.
+             .OMx.                .;okkxl;..       .;l:. .xWMNklkNMMW0ddOXWMMMMMMMMMNk'         .lKKd::oOkc.                        .dMO.
+             .OMx.             .;dOko,.                   .dNMW0ol0WMWO;..:coOXWMMMMMMKc.     .lxdc:lkOd,.                          .xMO.
+             .xMO.           ,oOkl'                         ;OWMNkcdXMMNd.    .:xKWMMMMNx.    ;lclxOx:.                             .kMk.
+              oW0'        .:k0x;.                            .oXMMXdckNMW0:..    .cONMWXO;   .:dOkc.                                '0Wd
+              :NN:       ;ONNKkxxxdddolc:,..                   ,kNMW0ll0WMNXx'      ':;.. .:dOkl'                                   :XNc
+              '0Wd.      .;;,,''',,,;:codxkkdl,.                .cKWMNklxNMMM0,        'cxOxc'                                     .dW0'
+              .dW0,                       .':x00o,                'xNMMXxdOKkc.    .;okkd:.                                        '0Wd.
+               ;KWo                       .;ok000k;                 :kxc,...   .;oxkxl,.                                           lNX;
+               .dWK,                   .cxOxl;....                      ..;:ldkkxl;.                                              ,0Wd.
+                '0Wx.                ,xKkc.         .:.            .:odxkkxdo:'.                                                 .xW0,
+                 cXNl         ...    ;kKk:.        .dWO'           .kNd,..                                                       cNNc
+                 .oNX:   .;llllllllc,. .cOOc.     .oKKXd.           lXc                                                         :KWd.
+                  .xW0:,ldl;...,:ldO0Ol. .lKd.  .cOO:'xK,           oX:                                                        ,0Wx.
+                   .kWXx:.  .:c:;codOXNKc. cKd,lOOc.  lXc          ,0k.                                                       ,0Wk.
+                   .o0l.   ;o;..:;...oXXKl..xNKx:.    cXl         'O0;                                                       ;KWk.
+                  .dx'   .cl. .c'    ;xkOO: .:'       cXl        ;OO,                                                       cXNd.
+                 ,xo.   .ll. .lc.'',,,cdlko           dK;      .d0d.                                                      .dNXl.
+                ,kl.   .cl.  .,,''..':o,'ko          .OO.    .o0k;                                                       ;ON0;
+               ,kl.    :o.    ..';::c,..lk,          cXo   'oOk;.                                                      .oXNd.
+              'ko.    'xd:;;::::;,.   .ox,          .O0,.:xOd;                                                       .c0NO;
+             .xd.      .....       .;odc.           oN0xOkl.                                                       .:ONKl.
+            .dx.               .,cdOk:.            :XN0o,.                                                       .cONKo.
+            ck,        ..',:cloolo0NKo'            'c,.                                                        'o0N0l.
+           ,0O:::cclllllllc:;..   .:kNXk:.                                                                  .:kXXk:.
+           'ccc::;,'...              'o0NKx:.                                                            .:xKN0o,
+                                       .;o0NKkl,.                                                    .'cxKN0d;.
+                                          .,lkXX0xc,.                                            .,cx0XXkl,.
+                                              .;okKXKOdc;..                                ..;cdOKXKko:.
+                                                  .,cdOKXXKOxoc:;'.....        .....,;:loxOKXXKOdc,.
+                                                       .';coxk0KXXXKKK00OOOOOO00KKKXXXK0kxoc;'.
+                                                               ..',;:ccllllllllcc:;,'...
+
+
+Automatisch generierte Mail vom (c) Erstifahrtanmeldesystem powered by https://fscs.hhu.de

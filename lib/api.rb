@@ -5,9 +5,13 @@ require_relative './api/models/trip'
 require_relative './api/resources/student'
 require_relative './api/resources/trip'
 
+require_relative './api/mailer'
+
 module Erstifahrt::Api
   class App < Sinatra::Base
     register Sinatra::Config
+
+    helpers Sinatra::Mailer
 
     app_config
 
@@ -25,6 +29,7 @@ module Erstifahrt::Api
       payload = JSON.parse(request.body.read)["data"]
       serialized = Deserializer::StudentDeserializer.call(payload)
       student = Student.create! serialized
+      welcome student
       render_jsonapi student
     end
 
@@ -32,6 +37,7 @@ module Erstifahrt::Api
 
     def render_jsonapi model, options: {}
       options[:class] ||= settings.serializer
+      options[:expose] = { app: self }.merge(options[:expose] || {})
       renderer.render(model, options).to_json
     end
 

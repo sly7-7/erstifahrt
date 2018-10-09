@@ -16,6 +16,14 @@ class Student < ActiveRecord::Base
 
   validate :is_18_at_departure
 
+  def activation_path
+    "/anmeldung/#{id}"
+  end
+
+  def registration_sheet_path
+    "/anmeldung/#{id}/anmeldeformular.pdf" 
+  end
+
   private
 
   def age_in_years_at_departure
