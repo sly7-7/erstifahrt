@@ -25,7 +25,7 @@ export default class Student extends Model.extend(Validations) {
 
   @attr('boolean') isCanceled;
 
-  @attr('date') dateOfBirth;
+  @attr('date', { isDate: true }) dateOfBirth;
 
   @attr('date') registrationDate;
 
