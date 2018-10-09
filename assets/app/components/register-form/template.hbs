@@ -17,7 +17,7 @@
       as |form|
     }}
 
-      <h3 class="register-heading mt-4 mb-4">Zur Fahrt anmelden</h3>
+      <h3 class="register-heading mt-4 mb-4">Zur Fahrt am {{moment-format trip.departure "DD. MMMM"}} anmelden</h3>
 
       {{#if hasError}}
         <div class="alert alert-danger fade show">
@@ -151,7 +151,7 @@
         {{#bs-button
           buttonType="submit"
           classNames="btn-register"
-          defaultText="Anmelden"
+          defaultText=(concat "Für " trip.fee " € all incl. Anmelden")
           disabled=form.isSubmitting
           type="primary"
         }}
