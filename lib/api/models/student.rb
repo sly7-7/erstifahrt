@@ -3,7 +3,7 @@ require 'securerandom'
 class Student < ActiveRecord::Base
   belongs_to :trip
 
-  before_save :generate_uuid
+  before_save :generate_uuid, :generate_registration_number
 
   validates :first_name, :last_name, :email, :date_of_birth, :subject, :nutrition, :trip, presence: {
     message: 'Alle Pflichtfelder müssen ausgefüllt werden'
@@ -21,6 +21,10 @@ class Student < ActiveRecord::Base
   def age_in_years_at_departure
     departure = trip.departure_at.to_time
     ((departure - date_of_birth.to_time) / 31556952).floor  # length of a gregorian year (365.2425 days)
+  end
+
+  def generate_registration_number
+    self.registration_number ||= Student.where(trip: trip).maximum(:registration_number).to_i + 1
   end
 
   def generate_uuid
