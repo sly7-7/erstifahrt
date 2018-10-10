@@ -18,16 +18,30 @@ module Erstifahrt::Api
       Trip: Serializers::SerializableTrip
     }
 
+    set :show_exceptions, :after_handler
+
+    mime_type :json, 'application/vnd.api+json'
+
     before do
       content_type :json
     end
 
     not_found do
-      halt 404, {
-        errors: [
-          title: 'Not found', detail: "Path '#{request.path}' not found"
-        ]
-      }.to_json
+      { errors: [ title: 'Not found', detail: "Path '#{request.path}' not found" ] }.to_json
+    end
+
+    error ActiveRecord::RecordInvalid do
+      errors = env['sinatra.error'].record.errors
+
+      [
+        422,
+        {
+          errors: errors.messages.reduce([]) do |errs, (attr, messages)|
+            base = { title: 'Attribute invalid', source: { pointer: "/data/attributes/#{attr}" } }
+            errs + messages.map { |message| base.merge detail: message }
+          end
+        }.to_json
+      ]
     end
 
     get '/trips' do

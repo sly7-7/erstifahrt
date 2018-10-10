@@ -2,11 +2,8 @@ import Route from '@ember/routing/route';
 
 export default class RegisterRoute extends Route {
   async model() {
-    const trips = await this.store.findAll('trip');
+    const trip = (await this.store.findAll('trip')).firstObject;
 
-    return {
-      trip: trips.firstObject,
-      student: this.store.createRecord('student')
-    }
+    return this.store.createRecord('student', { trip });
   }
 }

@@ -5,7 +5,6 @@ import { classNames } from '@ember-decorators/component';
 import { action } from '@ember-decorators/object';
 
 import Student from '../../student/model';
-import Trip from '../../trip/model';
 import { SUBJECTS } from '../../students/controller';
 
 @classNames('register-form')
@@ -49,6 +48,4 @@ export default class RegisterFormComponent extends Component {
   resetError() {
     this.setProperties({ hasError: false, errorMessages: [] });
   }
-
-  @argument @type(Trip) trip;
 }

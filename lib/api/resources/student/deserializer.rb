@@ -16,6 +16,15 @@ module Erstifahrt::Api
         :nutrition,
         :subject
       )
+
+      attribute :email do |email, key|
+        email += "@hhu.de" unless email.match(/@/)
+        { email: email.gsub(/uni\-duesseldorf\.de$/, "hhu.de") }
+      end
+
+      has_one do |_, id, type, key|
+        { "#{key.to_sym}_id" => id }
+      end
     end
   end
 end
