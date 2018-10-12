@@ -3,3 +3,5 @@
 /assets/dist
 /public
 /vendor
+
+/db/*.sqlite3

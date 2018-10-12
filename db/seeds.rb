@@ -4,7 +4,7 @@ require_relative '../lib/api/models/student'
 require_relative '../lib/api/models/trip'
 
 Trip.delete_all
-trip = Trip.create title: 'Erstifahrt 2018', fee: 25, departure_at: DateTime.new(Date.today.year, 11, Random.new.rand(1..30), 16)
+trip = Trip.create title: 'Erstifahrt 2018', fee: 25, departure_at: DateTime.new(2018, 11, 9, 16)
 
 Student.delete_all
 Student.create({

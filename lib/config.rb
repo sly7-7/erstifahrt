@@ -62,6 +62,12 @@ module Sinatra
     end
 
     def mailer_config
+      ActionMailer::Base.delivery_method = :smtp
+      ActionMailer::Base.smtp_settings = {
+        address: ENV["ERSTIFAHRT_SMTP_HOST"],
+        user_name: ENV["ERSTIFAHRT_SMTP_USERNAME"],
+        password: ENV["ERSTIFAHRT_SMTP_PASSWORD"]
+      }
     end
 
     def mailer_config_dev
