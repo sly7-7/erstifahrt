@@ -1,3 +1,4 @@
+require 'prawn'
 require 'sinatra/base'
 
 require_relative './api/models/student'
