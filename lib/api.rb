@@ -26,6 +26,10 @@ module Erstifahrt::Api
       render_jsonapi trip
     end
 
+    get '/students/:id' do
+      render_jsonapi Student.find params[:id]
+    end
+
     post '/students' do
       payload = JSON.parse(request.body.read)["data"]
       serialized = Deserializer::StudentDeserializer.call(payload)
