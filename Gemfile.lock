@@ -61,6 +61,7 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     mustermann (1.0.2)
+    net-ldap (0.16.1)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     pdf-core (0.7.0)
@@ -117,6 +118,7 @@ DEPENDENCIES
   jsonapi-deserializable (= 0.2.0)
   jsonapi-renderer (= 0.2.0)
   jsonapi-serializable (= 0.3.0)
+  net-ldap (= 0.16.1)
   prawn (= 2.2.2)
   pry-byebug
   rake

@@ -12,6 +12,7 @@ gem 'sinatra-activerecord', '2.0.13'
 gem 'sqlite3', '1.3.13'
 gem 'i18n', '1.1.0'
 gem 'prawn', '2.2.2'
+gem 'net-ldap', '0.16.1'
 gem 'rake'
 
 group :development do
