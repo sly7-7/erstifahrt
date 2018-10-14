@@ -32,7 +32,13 @@
               {{fa-icon "hourglass-start"}}
             </div>
 
-            <strong>angemeldet!</strong>
+            <strong>
+              {{#if model.isActive}}
+                in Bearbeitung!
+              {{else}}
+                E-Mail muss bestätigt werden!
+              {{/if}}
+            </strong>
 
           {{/if}}
 
@@ -66,17 +72,24 @@
         <section>
           <h2>Anmeldeformular runterladen</h2>
 
-          <p>
-            Um die Anmeldung abzuschließen musst du das Anmeldeformular runterladen, ausfüllen und
-            in die Info-Fachschaft zusammen mit der Teilnahmegebühr von
-            <strong>{{model.trip.fee}} €</strong> abgeben.  Ein Fachschaftsrat nimmt dies
-            entgegen und schließt die Anmeldung ab. Damit ist dein Platz sicher.
-          </p>
-
-          <p>
-            Das Anmeldeformular kannst du dir unter der folgenden Adresse runterladen:
-            <a href={{model.registrationSheetURL}}>{{model.registrationSheetURL}}</a>
+          {{#if model.isActive}}
+            <p>
+              Um die Anmeldung abzuschließen musst du das Anmeldeformular runterladen, ausfüllen und
+              in die Info-Fachschaft zusammen mit der Teilnahmegebühr von
+              <strong>{{model.trip.fee}} €</strong> abgeben.  Ein Fachschaftsrat nimmt dies
+              entgegen und schließt die Anmeldung ab. Damit ist dein Platz sicher.
             </p>
+
+            <p>
+              Das Anmeldeformular kannst du dir unter der folgenden Adresse runterladen:
+              <a target="_blank" href={{model.registrationSheetURL}}>{{model.registrationSheetURL}}</a>
+            </p>
+          {{else}}
+            <p>
+              Bitte überprüfe dein E-Mail-Postfach und klicke in der Bestätigungsmail auf den Link,
+              um die Anmeldung freizuschalten.
+            </p>
+          {{/if}}
         </section>
 
       </div>

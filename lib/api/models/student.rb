@@ -17,7 +17,7 @@ class Student < ActiveRecord::Base
   validate :is_18_at_departure
 
   def activation_path
-    "/anmeldung/#{id}"
+    "/anmeldung/#{id}/aktivierung"
   end
 
   def registration_sheet_path

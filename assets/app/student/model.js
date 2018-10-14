@@ -21,6 +21,8 @@ export default class Student extends Model.extend(Validations) {
 
   @attr('boolean') hasPayed;
 
+  @attr('boolean') isActive;
+
   @attr('boolean') isBooked;
 
   @attr('boolean') isCanceled;

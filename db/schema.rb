@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_08_171028) do
+ActiveRecord::Schema.define(version: 2018_10_14_002328) do
 
   create_table "students", id: :string, force: :cascade do |t|
     t.string "first_name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2018_10_08_171028) do
     t.integer "trip_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_active", default: false
     t.index ["id"], name: "sqlite_autoindex_students_1", unique: true
     t.index ["trip_id"], name: "index_students_on_trip_id"
   end

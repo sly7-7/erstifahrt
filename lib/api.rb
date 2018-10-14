@@ -37,7 +37,10 @@ module Erstifahrt::Api
       serialized = Deserializer::StudentDeserializer.call(payload)
       student = Student.create! serialized
       welcome student
-      render_jsonapi student
+      jsonapi_student = render_jsonapi student
+      jsonapi_student[:data][:id] = 'neuanmeldung'
+      jsonapi_student[:data][:attributes].delete :registration_sheet_url
+      json jsonapi_student
     end
 
     private
