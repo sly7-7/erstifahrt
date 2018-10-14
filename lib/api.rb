@@ -1,5 +1,6 @@
 require 'prawn'
 require 'sinatra/base'
+require 'sinatra/json'
 
 require_relative './api/models/student'
 require_relative './api/models/trip'
@@ -23,11 +24,12 @@ module Erstifahrt::Api
 
     get '/trips' do
       trip = Trip.first
-      render_jsonapi trip
+      json render_jsonapi(trip)
     end
 
     get '/students/:id' do
-      render_jsonapi Student.find params[:id]
+      student = Student.find(params[:id])
+      json render_jsonapi student, include: 'trip'
     end
 
     post '/students' do
@@ -40,10 +42,10 @@ module Erstifahrt::Api
 
     private
 
-    def render_jsonapi model, options: {}
+    def render_jsonapi model, options =  {}
       options[:class] ||= settings.serializer
       options[:expose] = { app: self }.merge(options[:expose] || {})
-      renderer.render(model, options).to_json
+      renderer.render(model, options)
     end
 
     def renderer
