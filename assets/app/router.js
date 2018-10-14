@@ -9,11 +9,11 @@ class Router extends EmberRouter {
 Router.map(function() {
   this.route('login');
 
-  this.route('register', { path: '/anmelden' });
+  this.route('register', { path: '/' });
 
   this.route('registration', { path: '/anmeldung/:student_id' });
 
-  this.route('authenticated', { path: '/' }, function() {
+  this.route('authenticated', { path: '/verwaltung' }, function() {
     this.route('students', { path: '/', resetNamespace: true });
     this.route('trip', { path: '/aktuelle-fahrt', resetNamespace: true });
     this.route('lists', { path: '/drucken/:target', resetNamespace: true })

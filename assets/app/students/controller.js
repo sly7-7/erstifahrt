@@ -8,7 +8,9 @@ export const SUBJECTS = [
   'Informatik',
   'Mathematik',
   'Med. Physik',
-  'Physik'
+  'Physik',
+  'Finanz- und Versicherungsmathematik',
+  'Naturwissenschaften'
 ];
 
 @Notable
