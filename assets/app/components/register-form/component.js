@@ -5,7 +5,7 @@ import { classNames } from '@ember-decorators/component';
 import { action } from '@ember-decorators/object';
 
 import Student from '../../student/model';
-import { SUBJECTS } from '../../students/controller';
+import { NUTRITIONS, SUBJECTS } from '../../students/controller';
 
 @classNames('register-form')
 export default class RegisterFormComponent extends Component {
@@ -18,11 +18,7 @@ export default class RegisterFormComponent extends Component {
     this.setError(this.student.validations.messages);
   }
 
-  nutritions = [
-    'Omnivor',
-    'Vegetarisch',
-    'Vegan'
-  ];
+  nutritions = NUTRITIONS;
 
   @argument @type(Function) onSubmit;
 

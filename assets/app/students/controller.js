@@ -13,6 +13,12 @@ export const SUBJECTS = [
   'Naturwissenschaften'
 ];
 
+export const NUTRITIONS = [
+    'Omnivor (alles)',
+    'Vegetarisch',
+    'Vegan'
+];
+
 @Notable
 export default class StudentsController extends Controller {
   subjects = SUBJECTS;
