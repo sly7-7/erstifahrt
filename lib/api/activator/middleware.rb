@@ -16,7 +16,8 @@ module Erstifahrt::Api
           student = Student.find id[1]
           student.is_active = true
           student.save
-          redirect request.path.gsub %r{/aktivierung$}, ''
+          response = redirect request.path.gsub %r{/aktivierung$}, '?activated=1'
+          response
         else
           @app.call env
         end
