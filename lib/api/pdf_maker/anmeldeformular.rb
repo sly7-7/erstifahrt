@@ -9,7 +9,7 @@ I18n.default_locale = :de
 module Erstifahrt::Api
   module PDFMaker
     class Anmeldeformular < Prawn::Document
-      ROOT = File.expand_path '../assets', __FILE__
+      ROOT = File.expand_path '../../assets', __FILE__
 
       DATE_FORMAT = '%d. %B %Y'
 
