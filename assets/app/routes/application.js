@@ -1,16 +1,13 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 
-import { service } from '@ember-decorators/service';
-
-class ApplicationRoute extends Route {
-  @service moment
+export default Route.extend(ApplicationRouteMixin, {
+  moment: service(),
 
   beforeModel() {
     this.get('moment').setLocale('de')
-  }
-}
+  },
 
-ApplicationRoute.reopen(ApplicationRouteMixin);
-
-export default ApplicationRoute;
+  routeAfterAuthentication: 'students',
+});

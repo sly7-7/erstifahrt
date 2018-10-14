@@ -7,13 +7,20 @@ require_relative './api/models/trip'
 require_relative './api/resources/student'
 require_relative './api/resources/trip'
 
+require_relative './api/authentication'
 require_relative './api/mailer'
+
+require_relative './api/sinatra/auth'
 
 module Erstifahrt::Api
   class App < Sinatra::Base
     register Sinatra::Config
 
+    helpers Sinatra::Auth
+
     helpers Sinatra::Mailer
+
+    use Authentication
 
     app_config
 
@@ -28,15 +35,18 @@ module Erstifahrt::Api
     end
 
     get '/students' do
+      protect!
       json render_jsonapi Student.all
     end
 
     get '/students/:id' do
+      protect!
       student = Student.find(params[:id])
       json render_jsonapi student, include: 'trip'
     end
 
     patch '/students/:id' do
+      protect!
       payload = JSON.parse(request.body.read)["data"]
       serialized = Deserializer::StudentDeserializer.call(payload)
       student = Student.find payload["id"]
