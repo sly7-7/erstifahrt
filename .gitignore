@@ -19,3 +19,5 @@ man/*
 /lib/bundler/generated/
 
 /db/*.sqlite3
+
+/var
