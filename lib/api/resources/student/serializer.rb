@@ -21,10 +21,11 @@ module Erstifahrt::Api
         :subject
       )
 
-      has_one :trip
-
+      attribute(:age) { @object.age_in_years_at_departure }
       attribute('registration_date') { @object.created_at }
       attribute('registration_sheet_url') { @app.url @object.registration_sheet_path, true, false }
+
+      has_one :trip
     end
   end
 end

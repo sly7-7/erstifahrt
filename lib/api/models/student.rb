@@ -24,12 +24,12 @@ class Student < ActiveRecord::Base
     "/anmeldung/#{id}/anmeldeformular.pdf" 
   end
 
-  private
-
   def age_in_years_at_departure
     departure = trip.departure_at.to_time
     ((departure - date_of_birth.to_time) / 31556952).floor  # length of a gregorian year (365.2425 days)
   end
+
+  private
 
   def generate_registration_number
     self.registration_number ||= Student.where(trip: trip).maximum(:registration_number).to_i + 1

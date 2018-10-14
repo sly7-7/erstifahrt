@@ -27,9 +27,22 @@ module Erstifahrt::Api
       json render_jsonapi(trip)
     end
 
+    get '/students' do
+      json render_jsonapi Student.all
+    end
+
     get '/students/:id' do
       student = Student.find(params[:id])
       json render_jsonapi student, include: 'trip'
+    end
+
+    patch '/students/:id' do
+      payload = JSON.parse(request.body.read)["data"]
+      serialized = Deserializer::StudentDeserializer.call(payload)
+      student = Student.find payload["id"]
+      student.update! serialized
+
+      json render_jsonapi student
     end
 
     post '/students' do

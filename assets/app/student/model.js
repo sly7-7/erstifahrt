@@ -5,6 +5,8 @@ import { computed } from '@ember-decorators/object';
 import Validations from './validations';
 
 export default class Student extends Model.extend(Validations) {
+  @attr('number') age;
+
   @attr comment;
 
   @attr councillor;

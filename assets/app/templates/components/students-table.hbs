@@ -101,17 +101,7 @@
           </td>
 
           <td class="text-right">
-            {{#editable-value
-              value=student.registrationDate
-              onSave=(action @update student "registrationDate")
-            as |editable|
-            }}
-              {{#if editable.isEditing}}
-                {{editable.datepicker}}
-              {{else}}
-                {{moment-format student.registrationDate "DD. MMMM"}}
-              {{/if}}
-            {{/editable-value}}
+            {{moment-format student.registrationDate "DD. MMMM"}}
           </td>
 
           <td>
