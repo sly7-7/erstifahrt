@@ -13,6 +13,7 @@ module Erstifahrt::Api
         :has_payed,
         :is_canceled,
         :is_booked,
+        :is_on_waiting_list,
         :nutrition,
         :subject
       )

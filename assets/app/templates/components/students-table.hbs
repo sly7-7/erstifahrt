@@ -18,10 +18,7 @@
         <th scope="col">Rat</th>
         <th scope="col">Anmeldedatum</th>
         <th scope="col">Hinweise</th>
-        <th scope="col">
-          {{fa-icon "cogs"}}
-          {{bs-tooltip title="Einstellungen"}}
-        </th>
+        <th scope="col"></th>
       </tr>
     </thead>
 
@@ -36,8 +33,10 @@
 
             {{#if student.isBooked}}
               {{fa-icon "user-check" classNames="text-success"}}
-            {{else}}
+            {{else if student.isOnWaitingList}}
               {{fa-icon "user-clock" classNames="text-warning"}}
+            {{else}}
+              {{fa-icon "user-times" classNames="text-danger"}}
             {{/if}}
 
             {{!-- TODO:
@@ -111,32 +110,114 @@
             }}
           </td>
 
-          <td class="text-right">
-            {{#if student.isBooked}}
+          <td class="text-center">
+            {{#bs-dropdown as |dd|}}
+              {{#dd.toggle}}
+                {{fa-icon "ellipsis-h"}}
+              {{/dd.toggle}}
 
-              {{#bs-button
-                type="danger"
-                size="sm"
-                title="Abmelden"
-                onClick=(action @unbook student)
-              }}
-                {{fa-icon "user-minus"}}
-                {{bs-tooltip title="Abmelden"}}
-              {{/bs-button}}
+              {{#dd.menu renderInPlace=false as |ddm|}}
+                {{#ddm.item}}
+                  {{#if student.isBooked}}
+                      {{#bs-button
+                        classNames="text-warning dropdown-item"
+                        type="link"
+                        title="Abmelden"
+                        onClick=(action @unbook student)
+                      as |button|
+                      }}
+                        {{#if button.isPending}}
+                          {{fa-icon "compass" prefix="far" spin=true}}
+                        {{else}}
+                          {{fa-icon "user-minus"}}
+                        {{/if}}
 
-            {{else}}
+                        Abmelden
+                      {{/bs-button}}
+                  {{else}}
+                    {{#bs-button
+                      classNames="dropdown-item"
+                      type="link"
+                      title=buttonTitle
+                      disabled=(not @placesLeft)
+                      onClick=(action @book student)
+                    as |button|
+                    }}
+                      {{#if button.isPending}}
+                        {{fa-icon "compass" prefix="far" spin=true}}
+                      {{else}}
+                        {{fa-icon "user-check"}}
+                      {{/if}}
 
-              {{#bs-button
-                type="success"
-                size="sm"
-                title="Anmelden"
-                onClick=(action @book student)
-              }}
-                {{fa-icon "user-check"}}
-                {{bs-tooltip title="Anmelden"}}
-              {{/bs-button}}
+                      {{if @placesLeft "Anmelden" "Keine Plätze mehr verfügbar"}}
+                    {{/bs-button}}
+                  {{/if}}
+                {{/ddm.item}}
 
-            {{/if}}
+                {{#if student.isOnWaitingList}}
+
+                  {{#ddm.item}}
+                    {{#bs-button
+                      classNames="dropdown-item"
+                      title=buttonTitle
+                      type="link"
+                      onClick=(action (action @update student "isOnWaitingList") false)
+                    as |button|
+                    }}
+                      {{#if button.isPending}}
+                        {{fa-icon "compass" prefix="far" spin=true}}
+                      {{else}}
+                        {{fa-icon "user-clock"}}
+                      {{/if}}
+
+                      Von der Warteliste runternehmen
+
+                    {{/bs-button}}
+                  {{/ddm.item}}
+
+                {{else if (not @placesLeft)}}
+                  {{#unless student.isBooked}}
+                    {{#ddm.item}}
+                      {{#bs-button
+                        classNames="dropdown-item"
+                        title=buttonTitle
+                        type="link"
+                        onClick=(action (action @update student "isOnWaitingList") true)
+                      as |button|
+                      }}
+                        {{#if button.isPending}}
+                          {{fa-icon "compass" prefix="far" spin=true}}
+                        {{else}}
+                          {{fa-icon "user-clock"}}
+                        {{/if}}
+
+                        Auf Warteliste setzen
+
+                      {{/bs-button}}
+                    {{/ddm.item}}
+                  {{/unless}}
+                {{/if}}
+
+                {{ddm.divider}}
+
+                {{#ddm.item}}
+                  {{#bs-button
+                    classNames="text-danger dropdown-item"
+                    title="Löschen"
+                    type="link"
+                    disabled=true
+                    onClick=(action @delete student) as |button|}}
+                    {{#if button.isPending}}
+                      {{fa-icon "compass" prefix="far" spin=true}}
+                    {{else}}
+                      {{fa-icon "trash-alt" prefix="far"}}
+                    {{/if}}
+
+                    Löschen
+                  {{/bs-button}}
+                {{/ddm.item}}
+              {{/dd.menu}}
+            {{/bs-dropdown}}
           </td>
 
         </tr>

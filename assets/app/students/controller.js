@@ -46,6 +46,11 @@ export default class StudentsController extends Controller {
   }
 
   @action
+  async delete(student) {
+    return student.destroyRecord();
+  }
+
+  @action
   async unbook(student) {
     this.resetMessage();
 
