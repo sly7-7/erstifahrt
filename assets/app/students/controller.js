@@ -24,6 +24,8 @@ export const NUTRITIONS = [
 export default class StudentsController extends Controller {
   @filterBy('model.students', 'isActive') activeStudents;
 
+  nutritions = NUTRITIONS;
+
   subjects = SUBJECTS;
 
   showInactive = false;

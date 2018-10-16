@@ -17,6 +17,7 @@
         <th scope="col">Fach</th>
         <th scope="col">Rat</th>
         <th scope="col">Anmeldedatum</th>
+        <th scope="col">Ernährung</th>
         <th scope="col">Hinweise</th>
         <th scope="col"></th>
       </tr>
@@ -101,6 +102,22 @@
 
           <td class="text-right">
             {{moment-format student.registrationDate "DD. MMMM"}}
+          </td>
+
+          <td>
+            {{#editable-value
+              value=student.nutrition
+              onSave=(action @update student "nutrition")
+            as |editable|
+            }}
+              {{#if editable.isEditing}}
+                {{editable.select options=@nutritions}}
+
+                {{editable.controls}}
+              {{else}}
+                {{student.nutrition}}
+              {{/if}}
+            {{/editable-value}}
           </td>
 
           <td>
