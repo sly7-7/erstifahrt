@@ -29,7 +29,7 @@
 
       {{#each @students as |student|}}
 
-        <tr class="student-row">
+        <tr class="student-row {{unless student.isActive 'is-inactive'}}">
 
           <th scope="row" class="text-right">
             {{student.registrationNumber}}:

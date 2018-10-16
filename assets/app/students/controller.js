@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { set } from '@ember/object';
 import { action } from '@ember-decorators/object';
+import { filterBy } from '@ember-decorators/object/computed';
 
 import Notable from 'erstifahrt/mixins/notable';
 
@@ -21,7 +22,11 @@ export const NUTRITIONS = [
 
 @Notable
 export default class StudentsController extends Controller {
+  @filterBy('model.students', 'isActive') activeStudents;
+
   subjects = SUBJECTS;
+
+  showInactive = false;
 
   @action
   async book(student) {

@@ -2,11 +2,14 @@
   <h1>{{model.title}}</h1>
 
   <p>
-    Freie Plätze: {{model.placesLeft}}, Warteliste: {{model.countWaitingList}}
+    Angemeldete Studenten: {{model.bookedStudents.length}}, Freie Plätze: {{model.placesLeft}}, Warteliste: {{model.countWaitingList}}
   </p>
 
+  <button class="btn btn-link" onclick={{action (mut showInactive) false}} disabled={{not showInactive}}>Nur aktive Studenten anzeigen</button>
+  <button class="btn btn-link" onclick={{action (mut showInactive) true}} disabled={{showInactive}}>Inaktive Studenten anzeigen</button>
+
   {{students-table
-    students=model.students
+    students=(if showInactive model.students activeStudents)
     placesLeft=model.placesLeft
     subjects=subjects
     book=(action "book")
