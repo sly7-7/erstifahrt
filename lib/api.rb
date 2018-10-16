@@ -31,7 +31,7 @@ module Erstifahrt::Api
 
     get '/trips' do
       trip = Trip.first
-      json render_jsonapi(trip)
+      json render_jsonapi trip, include: :students
     end
 
     get '/students' do
@@ -42,7 +42,7 @@ module Erstifahrt::Api
     get '/students/:id' do
       protect!
       student = Student.find(params[:id])
-      json render_jsonapi student, include: 'trip'
+      json render_jsonapi student, include: :trip
     end
 
     patch '/students/:id' do

@@ -148,6 +148,18 @@
       </div>
 
       <div class="form-group text-right mt-2">
+        <p>
+          <small>
+            {{#if @student.trip.noPlacesLeft}}
+              Keine Plätze mehr frei! Anmeldung auf die Warteliste möglich!
+            {{else if @student.trip.onePlaceLeft}}
+              Noch 1 Platz frei.
+            {{else}}
+              Noch {{@student.trip.placesLeft}} Plätze frei.
+            {{/if}}
+          </small>
+        </p>
+
         {{#bs-button
           buttonType="submit"
           classNames="btn-register"

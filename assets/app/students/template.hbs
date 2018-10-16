@@ -1,9 +1,18 @@
-{{students-table
-  students=model
-  subjects=subjects
-  book=(action "book")
-  update=(action "update")
-  unbook=(action "unbook")
-}}
+<section class="students">
+  <h1>{{model.title}}</h1>
 
-{{outlet}}
+  <p>
+    Freie Plätze: {{model.placesLeft}}
+  </p>
+
+  {{students-table
+    students=model.students
+    placesLeft=model.placesLeft
+    subjects=subjects
+    book=(action "book")
+    update=(action "update")
+    unbook=(action "unbook")
+  }}
+
+  {{outlet}}
+</section>

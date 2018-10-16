@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_14_204542) do
+ActiveRecord::Schema.define(version: 2018_10_15_235315) do
 
   create_table "students", id: :string, force: :cascade do |t|
     t.string "first_name"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2018_10_14_204542) do
     t.string "title"
     t.decimal "fee", precision: 5, scale: 2
     t.datetime "departure_at"
+    t.integer "max_students", default: 0
   end
 
   create_table "users", force: :cascade do |t|
