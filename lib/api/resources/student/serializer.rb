@@ -16,9 +16,9 @@ module Erstifahrt::Api
         :is_active,
         :is_canceled,
         :is_on_waiting_list,
+        :number_on_waiting_list,
         :last_name,
         :nutrition,
-        :registration_number,
         :subject
       )
 

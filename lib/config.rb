@@ -19,6 +19,12 @@ module Sinatra
       configure :production do
         mailer_config
       end
+
+      configure :test do
+        set :raise_errors, true
+        set :dump_errors, false
+        set :show_exceptions, false
+      end
     end
 
     def db_config

@@ -21,3 +21,5 @@ man/*
 /db/*.sqlite3
 
 /var
+
+/spec/examples.txt

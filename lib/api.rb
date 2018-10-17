@@ -2,6 +2,7 @@ require 'prawn'
 require 'sinatra/base'
 require 'sinatra/json'
 
+require_relative './config'
 require_relative './api/models/student'
 require_relative './api/models/trip'
 require_relative './api/resources/student'

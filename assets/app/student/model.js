@@ -35,7 +35,7 @@ export default class Student extends Model.extend(Validations) {
 
   @attr('date') registrationDate;
 
-  @attr('number') registrationNumber;
+  @attr('number') numberOnWaitingList;
 
   @attr('string') registrationSheetURL;
 

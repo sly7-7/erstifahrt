@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_16_221052) do
+ActiveRecord::Schema.define(version: 2018_10_18_221048) do
 
   create_table "students", id: :string, force: :cascade do |t|
     t.string "first_name"
@@ -21,15 +21,16 @@ ActiveRecord::Schema.define(version: 2018_10_16_221052) do
     t.text "comment"
     t.string "councillor"
     t.integer "registration_number"
-    t.boolean "has_payed"
+    t.boolean "has_payed", default: false
     t.boolean "is_booked"
-    t.boolean "is_canceled"
+    t.boolean "is_canceled", default: false
     t.date "date_of_birth"
     t.integer "trip_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_active", default: false
     t.boolean "is_on_waiting_list", default: false
+    t.integer "number_on_waiting_list", default: 0
     t.index ["id"], name: "sqlite_autoindex_students_1", unique: true
     t.index ["trip_id"], name: "index_students_on_trip_id"
   end

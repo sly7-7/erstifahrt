@@ -10,7 +10,8 @@ module Sinatra
     end
 
     def authorized?
-      user = User.find_by_token request.env['HTTP_AUTHORIZATION'].gsub(/Bearer /, '')
+      header = request.env['HTTP_AUTHORIZATION'] || ''
+      user = User.find_by_token header.gsub(/Bearer /, '')
 
       if user and user.token_is_valid?
         user.update_token_expiration!

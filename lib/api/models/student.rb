@@ -3,7 +3,7 @@ require 'securerandom'
 class Student < ActiveRecord::Base
   belongs_to :trip
 
-  before_save :generate_uuid, :generate_registration_number
+  before_save :generate_uuid, :generate_waiting_list_number
 
   validates :first_name, :last_name, :email, :date_of_birth, :subject, :nutrition, :trip, presence: {
     message: 'Alle Pflichtfelder müssen ausgefüllt werden'
@@ -31,8 +31,10 @@ class Student < ActiveRecord::Base
 
   private
 
-  def generate_registration_number
-    self.registration_number ||= Student.where(trip: trip).maximum(:registration_number).to_i + 1
+  def generate_waiting_list_number
+    if is_on_waiting_list and self.number_on_waiting_list == 0
+      self.number_on_waiting_list = trip.students.maximum(:number_on_waiting_list).to_i + 1
+    end
   end
 
   def generate_uuid
