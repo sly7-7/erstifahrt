@@ -18,3 +18,10 @@ gem 'rake'
 group :development do
   gem 'pry-byebug'
 end
+
+group :test do
+  gem 'rspec'
+  gem 'database_cleaner'
+  gem 'factory_bot'
+  gem 'faker'
+end
