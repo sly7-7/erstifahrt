@@ -1,5 +1,7 @@
 import { Factory, association, faker } from 'ember-cli-mirage';
 
+import { NUTRITIONS } from 'erstifahrt/students/controller';
+
 export default Factory.extend({
   comment: faker.company.catchPhrase,
 
@@ -10,6 +12,10 @@ export default Factory.extend({
       new Date(`${new Date().getFullYear() - 25}-01-01`),
       new Date(`${new Date().getFullYear() - 16}-01-01`)
     );
+  },
+
+  age() {
+    return faker.random.number({ min: 18, max: 40 });
   },
 
   email() {
@@ -24,9 +30,13 @@ export default Factory.extend({
 
   isActive: faker.random.boolean,
 
+  isOnWaitingList: faker.random.boolean,
+
   lastName: faker.name.lastName,
 
-  nutrition: faker.commerce.product,
+  nutrition() {
+    return faker.random.arrayElement(NUTRITIONS);
+  },
 
   registrationDate() {
     return faker.date.recent(40);

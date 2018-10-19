@@ -10,6 +10,7 @@
 @import components/students-table
 
 @import registration
+@import students
 
 
 body > .container-fluid
@@ -25,3 +26,9 @@ a
 .ember-power-select-trigger
   &:focus
     box-shadow: $input-focus-box-shadow
+
+[role='button']
+  cursor: pointer
+
+.global-message
+  z-index: 1000

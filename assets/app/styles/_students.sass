@@ -1,0 +1,48 @@
+.students
+
+  .data-table-wrapper
+    background: lighten($hhu-grey-10, 5%)
+    border: 1px solid $border-color
+    border-radius: $border-radius
+    padding-top: 1rem
+
+    tr,
+    td,
+    th
+      border-left: 0
+      border-right: 0
+
+    tr
+      &:last-of-type
+        &,
+        td,
+        th
+          border-bottom: 0
+
+    .info
+      margin-bottom: 1rem
+      padding: 0 1rem
+
+    table
+      border-bottom-left-radius: $border-radius
+      border-top-left-radius: $border-radius
+      margin-bottom: 0
+
+    .filter-toolbar
+      margin: 0
+
+  .name-filter
+    position: relative
+
+    .reset-button
+      right: 1.5rem
+
+  .reset-button
+    opacity: .2
+    position: absolute
+    right: .5rem
+    top: 50%
+    transform: translateY(-50%)
+
+    &:hover
+      opacity: .5
