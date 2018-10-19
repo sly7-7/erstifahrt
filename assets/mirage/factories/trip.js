@@ -18,5 +18,13 @@ export default Factory.extend({
     date.setHours(16);
 
     return date;
+  },
+
+  maxStudents() {
+    return faker.random.number({ min: 10, max: 20 });
+  },
+
+  afterCreate(trip, server) {
+    server.createList('student', faker.random.number({ min: 10, max: 20 }), { trip });
   }
 });

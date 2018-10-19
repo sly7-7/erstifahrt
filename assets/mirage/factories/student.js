@@ -1,4 +1,4 @@
-import { Factory, faker } from 'ember-cli-mirage';
+import { Factory, association, faker } from 'ember-cli-mirage';
 
 export default Factory.extend({
   comment: faker.company.catchPhrase,
@@ -22,6 +22,8 @@ export default Factory.extend({
 
   isBooked: faker.random.boolean,
 
+  isActive: faker.random.boolean,
+
   lastName: faker.name.lastName,
 
   nutrition: faker.commerce.product,
@@ -44,4 +46,6 @@ export default Factory.extend({
       'Mathematik'
     ]);
   },
+
+  trip: association()
 });
