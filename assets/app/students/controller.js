@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
-import { set } from '@ember/object';
-import { action } from '@ember-decorators/object';
-import { filterBy } from '@ember-decorators/object/computed';
+import { set, computed as emberComputed } from '@ember/object';
+import { action,computed } from '@ember-decorators/object';
+import { filterBy, macro } from '@ember-decorators/object/computed';
 
 import Notable from 'erstifahrt/mixins/notable';
 
@@ -20,15 +20,66 @@ export const NUTRITIONS = [
     'Vegan'
 ];
 
+const includesMacro = (collection, key) => emberComputed(`${collection}.[]`, key, function() {
+  return this[collection].includes(key);
+});
+
+const filters = macro(includesMacro, 'filters');
+
 @Notable
 export default class StudentsController extends Controller {
   @filterBy('model.students', 'isActive') activeStudents;
+
+  filters = ['isActive'];
+
+  @action
+  addToFilter(property) {
+    this.filters.addObject(property);
+  }
+
+  @action
+  removeFromFilter(property) {
+    this.filters.removeObject(property);
+  }
+
+  @action
+  resetFilter() {
+    this.set('filters', []);
+  }
+
+  @computed(
+    'filters.[]',
+    'query',
+    'model.students.@each.{hasPayed,isActive,isOnWaitingList,isBooked}'
+  )
+  get filteredStudents() {
+    return this.model.students.filter(student => {
+      const re = new RegExp(`.*${this.query.split('').join('.*')}.*`, 'i');
+      return (
+        !this.query
+          || re.test(student.fullName)
+          || re.test(student.nutrition)
+          || re.test(student.subject)
+          || re.test(student.councillor)
+          || re.test(student.age)
+          || re.test(student.comment)
+      ) && this.filters.every(key => student[key]);
+    });
+  }
 
   nutritions = NUTRITIONS;
 
   subjects = SUBJECTS;
 
-  showInactive = false;
+  query = '';
+
+  @filters('isActive') filterActive;
+
+  @filters('isBooked') filterBooked;
+
+  @filters('hasPayed') filterPayed;
+
+  @filters('isOnWaitingList') filterWaiting;
 
   @action
   async book(student) {

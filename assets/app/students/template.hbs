@@ -1,23 +1,91 @@
 <section class="students">
-  <h1>{{model.title}}</h1>
+  <h1>
+    {{model.title}}
+    <small>Abfahrt {{moment-from-now model.departure "DD. MMMM"}}</small>
+  </h1>
 
-  <p>
-    Angemeldete Studenten: {{model.bookedStudents.length}}, Freie Plätze: {{model.placesLeft}}, Warteliste: {{model.countWaitingList}}
-  </p>
+  <div class="data-table-wrapper">
 
-  <button class="btn btn-link" onclick={{action (mut showInactive) false}} disabled={{not showInactive}}>Nur aktive Studenten anzeigen</button>
-  <button class="btn btn-link" onclick={{action (mut showInactive) true}} disabled={{showInactive}}>Inaktive Studenten anzeigen</button>
+    <div class="row filter-toolbar">
 
-  {{students-table
-    students=(if showInactive model.students activeStudents)
-    placesLeft=model.placesLeft
-    nutritionss=nutritionss
-    subjects=subjects
-    book=(action "book")
-    delete=(action "delete")
-    update=(action "update")
-    unbook=(action "unbook")
-  }}
+      <div class="form-group col">
+        <div class="btn-toolbar">
+          <div class="btn-group">
+            <button class="btn btn-sm btn-outline-info {{if filterActive "active"}}" onclick={{action (if filterActive "removeFromFilter" "addToFilter") "isActive"}}>
+              {{fa-icon "user"}} Aktive Studenten
+            </button>
+
+            <button class="btn btn-sm btn-outline-info {{if filterBooked "active"}}" onclick={{action (if filterBooked "removeFromFilter" "addToFilter") "isBooked"}}>
+              {{fa-icon "user-check"}} Angemeldete Studenten
+            </button>
+
+            <button class="btn btn-sm btn-outline-info {{if filterWaiting "active"}}" onclick={{action (if filterWaiting "removeFromFilter" "addToFilter") "isOnWaitingList"}}>
+              {{fa-icon "user-clock"}} Warteliste
+            </button>
+
+            <button class="btn btn-sm btn-outline-info {{if filterPayed "active"}}" onclick={{action (if filterPayed "removeFromFilter" "addToFilter") "hasPayed"}}>
+              {{fa-icon "hand-holding-usd"}} Bezahlt
+            </button>
+          </div>
+
+          {{#if filters}}
+            <div class="btn-group ml-2" role="group" aria-label="Filter entfernen">
+              <button class="btn btn-sm btn-outline-dark" onclick{{action "resetFilter"}}>
+                {{fa-icon "times-circle" prefix="far"}}
+                Filter entfernen
+              </button>
+            </div>
+          {{/if}}
+        </div>
+      </div>
+
+      <div class="form-group name-filter col">
+        <input
+          type="text"
+          value={{query}}
+          class="form-control form-control-sm"
+          oninput={{action (mut query) value="target.value"}}
+          placeholder="Suche Namen, Alter, Fach, Rat, Ernährung oder Kommentar"
+        >
+
+        {{#if query}}
+          <a role="button" onclick={{action (mut query) ""}} class="reset-button">
+            {{fa-icon "times-circle"}}
+            {{bs-tooltip title="Namensfilter entfernen"}}
+          </a>
+        {{/if}}
+      </div>
+
+    </div>
+
+    <div class="info text-right">
+      Registrierte Studenten
+      <span class="badge badge-pill badge-info">{{model.students.length}}</span>
+      Angemeldete Studenten
+      <span class="badge badge-pill badge-{{unless model.placesLeft "danger" "info"}}">{{model.bookedStudents.length}}/{{model.maxStudents}}</span>
+      Freie Plätze
+      <span class="badge badge-pill badge-{{unless model.placesLeft "danger" "info"}}">{{model.placesLeft}}</span>
+      Warteliste
+      <span class="badge badge-pill badge-{{if model.waitingListStudents "warning" "info"}}">{{model.waitingListStudents.length}}</span>
+    </div>
+
+    {{#if filteredStudents}}
+      {{students-table
+        students=filteredStudents
+        placesLeft=model.placesLeft
+        nutritions=nutritions
+        subjects=subjects
+        book=(action "book")
+        delete=(action "delete")
+        update=(action "update")
+        unbook=(action "unbook")
+      }}
+    {{else}}
+      <p class="text-center">
+        <em>Es sind noch keine Studenten angemeldet oder mit diesen Filterkriterien gibt es keine Studenten</em>
+      </p>
+    {{/if}}
+  </div>
 
   {{outlet}}
 </section>

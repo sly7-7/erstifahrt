@@ -14,14 +14,11 @@ export default class TripModel extends Model {
 
   @filterBy('students', 'isBooked', true) bookedStudents;
 
-  @computed('maxStudents', 'bookedStudents.length')
-  get countWaitingList() {
-    return Math.abs(Math.min(0, this.maxStudents - this.bookedStudents.length));
-  }
+  @filterBy('students', 'isOnWaitingList', true) waitingListStudents;
 
   @computed('maxStudents', 'bookedStudents.length')
   get placesLeft() {
-    return Math.max(0, this.maxStudents - this.students.filterBy('isBooked').length);
+    return Math.max(0, this.maxStudents - this.bookedStudents.length);
   }
 
   @equal('placesLeft', 0) noPlacesLeft;

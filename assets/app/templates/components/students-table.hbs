@@ -4,12 +4,8 @@
     <thead class="thead-light text-center">
       <tr>
         <th scope="col">
-          {{fa-icon "hashtag"}}
-          {{bs-tooltip title="Anmeldenummer/Status"}}
-        </th>
-        <th scope="col" title="Student hat bezahlt">
-          {{fa-icon "money-bill-wave"}}
-          {{bs-tooltip title="Student hat bezahlt"}}
+          {{fa-icon "clipboard-check"}}
+          {{bs-tooltip title="Status"}}
         </th>
         <th scope="col">Name</th>
         <th scope="col">Geburtstag</th>
@@ -19,6 +15,10 @@
         <th scope="col">Anmeldedatum</th>
         <th scope="col">Ernährung</th>
         <th scope="col">Hinweise</th>
+        <th scope="col" title="Student hat bezahlt">
+          {{fa-icon "money-bill-wave"}}
+          {{bs-tooltip title="Student hat bezahlt"}}
+        </th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -30,14 +30,15 @@
         <tr class="student-row {{unless student.isActive 'is-inactive'}}">
 
           <th scope="row" class="text-right">
-            {{student.registrationNumber}}:
-
             {{#if student.isBooked}}
               {{fa-icon "user-check" classNames="text-success"}}
+              {{#bs-tooltip}}Angemeldet{{/bs-tooltip}}
             {{else if student.isOnWaitingList}}
               {{fa-icon "user-clock" classNames="text-warning"}}
+              {{#bs-tooltip}}Auf der Warteliste{{/bs-tooltip}}
             {{else}}
               {{fa-icon "user-times" classNames="text-danger"}}
+              {{#bs-tooltip}}Registriert{{/bs-tooltip}}
             {{/if}}
 
             {{!-- TODO:
@@ -46,13 +47,6 @@
               {{/if}}
             --}}
           </th>
-
-          <td class="text-center">
-            {{input-switch
-              checked=student.hasPayed
-              onchange=(action @update student "hasPayed")
-            }}
-          </td>
 
           <td>
             {{editable-value
@@ -124,6 +118,13 @@
             {{editable-value
               value=student.comment
               onSave=(action @update student "comment")
+            }}
+          </td>
+
+          <td class="text-center">
+            {{input-switch
+              checked=student.hasPayed
+              onchange=(action @update student "hasPayed")
             }}
           </td>
 
