@@ -34,6 +34,8 @@ class Student < ActiveRecord::Base
   def generate_waiting_list_number
     if is_on_waiting_list and self.number_on_waiting_list == 0
       self.number_on_waiting_list = trip.students.maximum(:number_on_waiting_list).to_i + 1
+    elsif not is_on_waiting_list
+      self.number_on_waiting_list = 0
     end
   end
 

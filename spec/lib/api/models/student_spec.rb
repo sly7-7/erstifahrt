@@ -23,6 +23,16 @@ RSpec.describe Student do
       subject { students[0].number_on_waiting_list }
       before { students[0].update! is_on_waiting_list: true }
       it { is_expected.to eq 1 }
+
+      describe "remove student" do
+        before { students[0].update! is_on_waiting_list: false }
+        it { is_expected.to eq 0 }
+
+        describe "and readd him" do
+          before { students[0].update! is_on_waiting_list: true }
+          it { is_expected.to eq 1 }
+        end
+      end
     end
 
     context 'with more than one student on waiting list' do
@@ -36,6 +46,17 @@ RSpec.describe Student do
         subject { students.sort_by {|s| s.number_on_waiting_list } }
 
         it { is_expected.to eq [students[2], students[0], students[1]] }
+      end
+
+      describe "remove student" do
+        subject { students[0].number_on_waiting_list }
+        before { students[0].update! is_on_waiting_list: false }
+        it { is_expected.to eq 0 }
+
+        describe "and readd him" do
+          before { students[0].update! is_on_waiting_list: true }
+          it { is_expected.to eq 4 }
+        end
       end
     end
   end

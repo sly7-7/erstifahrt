@@ -34,6 +34,8 @@
               {{fa-icon "user-check" classNames="text-success"}}
               {{#bs-tooltip}}Angemeldet{{/bs-tooltip}}
             {{else if student.isOnWaitingList}}
+              <span class="badge badge-warning">{{student.numberOnWaitingList}}</span>
+
               {{fa-icon "user-clock" classNames="text-warning"}}
               {{#bs-tooltip}}Auf der Warteliste{{/bs-tooltip}}
             {{else}}

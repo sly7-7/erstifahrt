@@ -140,6 +140,7 @@ export default class StudentsController extends Controller {
       return false;
     }
 
+    this.model.students.reload();
     this.success(`${student.fullName} wurde erfolgreich bearbeitet.`);
   }
 }

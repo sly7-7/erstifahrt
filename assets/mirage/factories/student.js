@@ -42,7 +42,7 @@ export default Factory.extend({
     return faker.date.recent(40);
   },
 
-  registrationNumber(i) {
+  numberOnWaitingList(i) {
     return i;
   },
 
