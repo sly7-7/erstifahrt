@@ -21,15 +21,23 @@
           {{#if model.isBooked}}
 
             <div class="icon booked">
-              {{fa-icon "calendar-check"}}
+              {{fa-icon "user-check" transform="shrink-8 down-2" mask="clipboard"}}
             </div>
 
             <strong>bestätigt!</strong>
 
+          {{else if model.isOnWaitingList}}
+            <div class="icon">
+              {{fa-icon 'user-friends' transform="shrink-8 down-2" mask="clipboard"}}
+            </div>
+
+            <strong>
+              auf der Warteliste (Platz {{model.numberOnWaitingList}})
+            </strong>
           {{else}}
 
             <div class="icon">
-              {{fa-icon "hourglass-start"}}
+              {{fa-icon "user-clock" transform="shrink-8 down-2" mask="clipboard"}}
             </div>
 
             <strong>
