@@ -12,11 +12,11 @@
         <div class="btn-toolbar">
           <div class="btn-group">
             <button class="btn btn-sm btn-outline-info {{if filterActive "active"}}" onclick={{action (if filterActive "removeFromFilter" "addToFilter") "isActive"}}>
-              {{fa-icon "user"}} Aktive Studenten
+              {{fa-icon "user"}} Aktiviert
             </button>
 
             <button class="btn btn-sm btn-outline-info {{if filterBooked "active"}}" onclick={{action (if filterBooked "removeFromFilter" "addToFilter") "isBooked"}}>
-              {{fa-icon "user-check"}} Angemeldete Studenten
+              {{fa-icon "user-check"}} Angemeldet
             </button>
 
             <button class="btn btn-sm btn-outline-info {{if filterWaiting "active"}}" onclick={{action (if filterWaiting "removeFromFilter" "addToFilter") "isOnWaitingList"}}>
