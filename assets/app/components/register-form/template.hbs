@@ -136,7 +136,13 @@
           {{/form.element}}
 
           <div class="form-group">
-            <textarea class="form-control" rows="4" placeholder="Anmerkungen und Hinweise wie Lebensmittelunverträglichkeiten oder Ähnliches. Eure Angaben werden vertraulich behandelt."></textarea>
+            <textarea
+              class="form-control"
+              rows="4"
+              onchange={{action (mut student.comment) value="target.value"}}
+              placeholder="Anmerkungen und Hinweise wie Lebensmittelunverträglichkeiten oder Ähnliches. Eure Angaben werden vertraulich behandelt."
+            >
+            </textarea>
           </div>
 
         </div>
