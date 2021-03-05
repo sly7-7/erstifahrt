@@ -1,6 +1,6 @@
-import Model from 'ember-data/model';
-import { attr, belongsTo } from '@ember-decorators/data';
-import { computed } from '@ember-decorators/object';
+import Model, { attr, belongsTo } from '@ember-data/model';
+
+import { computed } from '@ember/object';
 
 import Validations from './validations';
 
@@ -11,7 +11,7 @@ export default class Student extends Model.extend(Validations) {
 
   @attr councillor;
 
-  @attr email
+  @attr email;
 
   @attr firstName;
 
@@ -60,11 +60,11 @@ export default class Student extends Model.extend(Validations) {
 
   async book() {
     this.set('isBooked', true);
-    return await this.save()
+    return await this.save();
   }
 
   async unbook() {
     this.set('isBooked', false);
-    return await this.save()
+    return await this.save();
   }
 }

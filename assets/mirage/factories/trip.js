@@ -1,4 +1,5 @@
-import { Factory, faker } from 'ember-cli-mirage';
+import { Factory } from 'ember-cli-mirage';
+import faker from 'faker';
 
 export default Factory.extend({
   title(i) {
@@ -25,6 +26,8 @@ export default Factory.extend({
   },
 
   afterCreate(trip, server) {
-    server.createList('student', faker.random.number({ min: 10, max: 20 }), { trip });
-  }
+    server.createList('student', faker.random.number({ min: 10, max: 20 }), {
+      trip,
+    });
+  },
 });

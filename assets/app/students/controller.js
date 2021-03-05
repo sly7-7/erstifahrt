@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
-import { set, computed as emberComputed } from '@ember/object';
-import { action,computed } from '@ember-decorators/object';
-import { filterBy, macro } from '@ember-decorators/object/computed';
+import { set } from '@ember/object';
+import { action, computed } from '@ember/object';
+import macro, { filterBy } from 'macro-decorators';
 
 import Notable from 'erstifahrt/mixins/notable';
 
@@ -11,20 +11,16 @@ export const SUBJECTS = [
   'Med. Physik',
   'Physik',
   'Finanz- und Versicherungsmathematik',
-  'Naturwissenschaften'
+  'Naturwissenschaften',
 ];
 
-export const NUTRITIONS = [
-    'Omnivor (alles)',
-    'Vegetarisch',
-    'Vegan'
-];
+export const NUTRITIONS = ['Omnivor (alles)', 'Vegetarisch', 'Vegan'];
 
-const includesMacro = (collection, key) => emberComputed(`${collection}.[]`, key, function() {
-  return this[collection].includes(key);
-});
-
-const filters = macro(includesMacro, 'filters');
+function filters(key) {
+  return macro(function () {
+    return this.filters.includes(key);
+  });
+}
 
 @Notable
 export default class StudentsController extends Controller {
@@ -53,17 +49,18 @@ export default class StudentsController extends Controller {
     'model.students.@each.{hasPayed,isActive,isOnWaitingList,isBooked}'
   )
   get filteredStudents() {
-    return this.model.students.filter(student => {
+    return this.model.students.filter((student) => {
       const re = new RegExp(`.*${this.query.split('').join('.*')}.*`, 'i');
       return (
-        !this.query
-          || re.test(student.fullName)
-          || re.test(student.nutrition)
-          || re.test(student.subject)
-          || re.test(student.councillor)
-          || re.test(student.age)
-          || re.test(student.comment)
-      ) && this.filters.every(key => student[key]);
+        (!this.query ||
+          re.test(student.fullName) ||
+          re.test(student.nutrition) ||
+          re.test(student.subject) ||
+          re.test(student.councillor) ||
+          re.test(student.age) ||
+          re.test(student.comment)) &&
+        this.filters.every((key) => student[key])
+      );
     });
   }
 
@@ -87,7 +84,7 @@ export default class StudentsController extends Controller {
 
     try {
       await student.book();
-    } catch(e) {
+    } catch (e) {
       this.error(
         `${student.fullName} konnte wegen eines Fehlers im Backend nicht angemeldet werden.`,
         e.message
@@ -109,7 +106,7 @@ export default class StudentsController extends Controller {
 
     try {
       await student.unbook();
-    } catch(e) {
+    } catch (e) {
       this.error(
         `${student.fullName} konnte wegen eines Fehlers im Backend nicht abgemeldet werden.`,
         e.message
@@ -130,7 +127,7 @@ export default class StudentsController extends Controller {
 
     try {
       await student.save();
-    } catch(e) {
+    } catch (e) {
       this.error(
         `${student.fullName} konnte wegen eines Fehlers im Backend nicht bearbeitet werden.`,
         e.message

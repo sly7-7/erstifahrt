@@ -1,17 +1,17 @@
 import Route from '@ember/routing/route';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 
 export default class RegistrationRoute extends Route {
   @service flashMessages;
 
   queryParams = {
     activated: {
-      refreshModel: true
-    }
-  }
+      refreshModel: true,
+    },
+  };
 
   beforeModel(transition) {
-    if (transition.queryParams.activated) {
+    if (transition.to.queryParams.activated) {
       this.flashMessages.success('Got activated');
       this.replaceWith({ queryParams: { activated: false } });
     }

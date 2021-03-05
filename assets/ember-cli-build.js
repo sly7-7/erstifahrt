@@ -2,41 +2,56 @@
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const autoprefixer = require('autoprefixer');
+var nodeSass = require('node-sass');
 
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
     sassOptions: {
-      extension: 'sass'
+      implementation: nodeSass,
+      extension: 'sass',
+      sourceMap: false,
     },
 
     'ember-bootstrap': {
-      'bootstrapVersion': 4,
-      'importBootstrapFont': false,
-      'importBootstrapCSS': false
+      bootstrapVersion: 4,
+      importBootstrapFont: false,
+      importBootstrapCSS: false,
     },
 
     postcssOptions: {
       compile: { enabled: false },
       filter: {
         enabled: true,
-        plugins: [ { module: autoprefixer } ]
-      }
-    }
+        plugins: [{ module: autoprefixer }],
+      },
+    },
   });
 
   app.import('node_modules/@fortawesome/fontawesome-free/css/solid.css');
-  app.import('node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot', {
-    destDir: 'webfonts'
-  });
-  app.import('node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf', {
-    destDir: 'webfonts'
-  });
-  app.import('node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff', {
-    destDir: 'webfonts'
-  });
-  app.import('node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2', {
-    destDir: 'webfonts'
-  });
+  app.import(
+    'node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.eot',
+    {
+      destDir: 'webfonts',
+    }
+  );
+  app.import(
+    'node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf',
+    {
+      destDir: 'webfonts',
+    }
+  );
+  app.import(
+    'node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff',
+    {
+      destDir: 'webfonts',
+    }
+  );
+  app.import(
+    'node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2',
+    {
+      destDir: 'webfonts',
+    }
+  );
 
   // Use `app.import` to add additional libraries to the generated
   // output files.

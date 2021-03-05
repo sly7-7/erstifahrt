@@ -1,7 +1,6 @@
-import Model from 'ember-data/model';
-import { attr, hasMany } from '@ember-decorators/data';
-import { computed } from '@ember-decorators/object';
-import { equal, filterBy } from '@ember-decorators/object/computed';
+import Model, { attr, hasMany } from '@ember-data/model';
+import { computed } from '@ember/object';
+import { equal, filterBy } from 'macro-decorators';
 
 export default class TripModel extends Model {
   @attr title;

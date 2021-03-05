@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 
 import { readOnly } from '@ember-decorators/object/computed';
-import { service } from '@ember-decorators/service';
+import { inject as service } from '@ember/service';
 
 export default class GlobalMessageComponent extends Component {
   @service

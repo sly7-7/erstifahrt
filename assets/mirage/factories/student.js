@@ -1,4 +1,5 @@
-import { Factory, association, faker } from 'ember-cli-mirage';
+import { Factory, association } from 'ember-cli-mirage';
+import faker from 'faker';
 
 import { NUTRITIONS } from 'erstifahrt/students/controller';
 
@@ -53,9 +54,9 @@ export default Factory.extend({
       'Informatik',
       'Physik',
       'Med. Physik',
-      'Mathematik'
+      'Mathematik',
     ]);
   },
 
-  trip: association()
+  trip: association(),
 });
